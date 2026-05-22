@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#020617" />
+  <title>Space Ship Survivor — Assets Edition</title>
+  <style>
+
+    :root{scrollbar-color:rgba(56,189,248,.72) rgba(2,6,23,.72);scrollbar-width:thin}
+    *{scrollbar-width:thin;scrollbar-color:rgba(56,189,248,.72) rgba(2,6,23,.72)}
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-track{background:rgba(2,6,23,.72);border-radius:999px}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#38bdf8,#818cf8,#c084fc);border:2px solid rgba(2,6,23,.86);border-radius:999px}
+    ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#67e8f9,#a5b4fc,#d8b4fe)}
+    ::-webkit-scrollbar-corner{background:transparent}
+    .panel::-webkit-scrollbar{width:8px}
+    .panel::-webkit-scrollbar-track{margin:18px 0;background:rgba(255,255,255,.05);border-radius:999px}
+    .panel::-webkit-scrollbar-thumb{border:2px solid rgba(15,23,42,.98)}
+    *{box-sizing:border-box;user-select:none;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020617;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}canvas{display:block;width:100vw;height:100vh;cursor:crosshair;background:radial-gradient(circle at center,rgba(59,130,246,.18),transparent 42%),radial-gradient(circle at 20% 20%,rgba(168,85,247,.14),transparent 30%),linear-gradient(180deg,#020617,#030712 62%,#020617)}button{font:inherit}.ui{position:fixed;inset:0;pointer-events:none;z-index:10}.hint{position:absolute;top:18px;left:50%;transform:translateX(-50%);padding:8px 13px;border-radius:999px;background:rgba(2,6,23,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);font-size:13px;color:rgba(255,255,255,.75);white-space:nowrap}.top{position:absolute;top:16px;left:16px;right:16px;display:flex;flex-wrap:wrap;gap:8px}.pill{padding:8px 12px;border-radius:999px;background:rgba(2,6,23,.52);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);font-size:13px;color:rgba(255,255,255,.9)}.bars{position:absolute;left:16px;right:16px;bottom:18px;display:grid;gap:8px}.bar-label{display:flex;justify-content:space-between;margin-bottom:-2px;padding:0 2px;font-size:11px;color:rgba(255,255,255,.66)}.bar-wrap{height:14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);overflow:hidden}.xp-bar,.boost-bar,.fire-bar,.ability-bar{height:100%;width:0;border-radius:inherit;transition:width .12s linear}.xp-bar{background:linear-gradient(90deg,#22d3ee,#818cf8,#c084fc)}.boost-bar{background:linear-gradient(90deg,#f97316,#facc15,#fde68a)}.fire-bar{background:linear-gradient(90deg,#ef4444,#fb7185,#fda4af)}.ability-bar{background:linear-gradient(90deg,#22c55e,#38bdf8,#a78bfa)}.toast{position:absolute;top:68px;left:50%;translate:-50% -12px;min-width:260px;max-width:min(540px,calc(100vw - 32px));padding:13px 16px;border-radius:18px;text-align:center;background:rgba(15,23,42,.72);border:1px solid rgba(125,211,252,.22);backdrop-filter:blur(12px);opacity:0;transition:.25s ease;box-shadow:0 20px 60px rgba(0,0,0,.35)}.toast.show{opacity:1;translate:-50% 0}.toast b{display:block;font-size:15px}.toast span{display:block;margin-top:2px;font-size:12px;color:rgba(255,255,255,.68)}.boss{position:absolute;top:112px;left:50%;transform:translateX(-50%);width:min(560px,calc(100vw - 32px));display:none}.boss.show{display:block}.boss-name{display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px;color:rgba(255,255,255,.8)}.boss-bg{height:13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);overflow:hidden}.boss-bar{height:100%;width:100%;background:linear-gradient(90deg,#fb7185,#f97316,#facc15)}.modal{position:fixed;inset:0;display:none;place-items:center;padding:18px;background:rgba(2,6,23,.72);backdrop-filter:blur(10px);pointer-events:auto;z-index:20}.modal.show{display:grid}.panel{width:min(980px,100%);max-height:min(88vh,860px);overflow:auto;padding:28px;border-radius:28px;background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(2,6,23,.98));border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);text-align:center}.panel h1,.panel h2{margin:0 0 10px;letter-spacing:-.045em}.panel p{margin:0 0 18px;color:rgba(255,255,255,.72);line-height:1.55}.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.btn{border:0;border-radius:16px;padding:13px 19px;background:#e0f2fe;color:#020617;font-weight:900;cursor:pointer;transition:.15s}.btn:hover{transform:translateY(-1px)}.btn.secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.14)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px;text-align:left}.card{padding:18px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:left;cursor:pointer;transition:.15s}.card:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28)}.card.active{border-color:rgba(56,189,248,.72);background:rgba(56,189,248,.12)}.card.locked{opacity:.48}.icon{width:62px;height:62px;display:grid;place-items:center;margin-bottom:14px;border-radius:18px;background:rgba(255,255,255,.1);font-size:26px;overflow:hidden}.icon img{width:100%;height:100%;object-fit:contain}.card h3{margin:0 0 8px;font-size:17px}.card p{margin:0;font-size:13px;color:rgba(255,255,255,.68)}.muted{color:rgba(255,255,255,.62);font-size:13px}.pause-badge{display:inline-flex;margin-bottom:14px;padding:8px 13px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.24);color:#bae6fd;font-size:13px;font-weight:800}.settings-list{display:grid;gap:12px;margin-top:18px;text-align:left}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}.setting-row h3{margin:0 0 4px;font-size:16px}.setting-row p{margin:0;font-size:13px;color:rgba(255,255,255,.62)}.switch{width:58px;height:32px;border:0;border-radius:999px;background:rgba(255,255,255,.14);position:relative;cursor:pointer;flex:0 0 auto;transition:.18s}.switch:before{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.18s}.switch.active{background:#38bdf8}.switch.active:before{transform:translateX(26px)}.hero-card{position:relative;overflow:hidden;padding:28px;border-radius:28px;background:radial-gradient(circle at 20% 15%,rgba(56,189,248,.18),transparent 34%),radial-gradient(circle at 86% 18%,rgba(192,132,252,.18),transparent 34%),rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);margin-bottom:18px}.hero-card:before{content:"";position:absolute;inset:-80px;background:linear-gradient(120deg,transparent,rgba(255,255,255,.08),transparent);transform:rotate(12deg);pointer-events:none}.hero-kicker{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.24);color:#bae6fd;font-size:12px;font-weight:900;margin-bottom:12px}.hero-title{margin:0;font-size:clamp(34px,7vw,72px);letter-spacing:-.07em;line-height:.95}.hero-title span{display:block;color:#93c5fd}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.stat{padding:14px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);text-align:center}.stat b{display:block;font-size:20px}.stat span{display:block;margin-top:3px;font-size:11px;color:rgba(255,255,255,.62)}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;text-align:left}.section-title h3{margin:0;font-size:17px}.section-title span{font-size:12px;color:rgba(255,255,255,.55)}.achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;text-align:left}.achievement{display:flex;gap:13px;align-items:flex-start;padding:15px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11)}.achievement.locked{opacity:.48}.achievement-icon{width:46px;height:46px;display:grid;place-items:center;flex:0 0 auto;border-radius:16px;background:rgba(56,189,248,.14);font-size:22px}.achievement.locked .achievement-icon{background:rgba(255,255,255,.09)}.achievement h3{margin:0 0 4px;font-size:15px}.achievement p{margin:0 0 8px;font-size:12px;color:rgba(255,255,255,.62)}.mini-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden;border:1px solid rgba(255,255,255,.08)}.mini-bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#22d3ee,#818cf8,#c084fc)}.reward{display:inline-flex;margin-top:8px;padding:5px 8px;border-radius:999px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.18);font-size:11px;color:#fde68a;font-weight:800}.unlock-list{margin-top:12px;padding:12px 14px;border-radius:18px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.18);color:#bbf7d0;font-size:13px}.tutorial-box{position:relative;overflow:hidden;text-align:center}.tutorial-box:before{content:"";position:absolute;inset:-120px;background:radial-gradient(circle at 25% 10%,rgba(56,189,248,.16),transparent 36%),radial-gradient(circle at 80% 5%,rgba(192,132,252,.14),transparent 35%);pointer-events:none}.tutorial-content{position:relative;z-index:1}.tutorial-icon{width:76px;height:76px;margin:0 auto 14px;display:grid;place-items:center;border-radius:24px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.22);font-size:34px}.tutorial-keys{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0}.keycap{min-width:42px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 -2px 0 rgba(0,0,0,.25);font-weight:900;color:#e0f2fe}.tutorial-progress{margin-top:10px;font-size:12px;color:rgba(255,255,255,.55)}
+    .hud-wide{min-width:180px}.mission-pill{max-width:min(420px,calc(100vw - 32px));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.combo-pill.hot{border-color:rgba(251,113,133,.38);background:rgba(251,113,133,.13);color:#fecdd3}.result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.result-card{padding:14px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);text-align:center}.result-card b{display:block;font-size:20px}.result-card span{display:block;margin-top:3px;font-size:11px;color:rgba(255,255,255,.62)}.build-badge{display:inline-flex;margin-top:10px;padding:7px 10px;border-radius:999px;background:rgba(129,140,248,.12);border:1px solid rgba(129,140,248,.2);font-size:12px;color:#c7d2fe;font-weight:900}.event-badge{position:absolute;top:68px;right:16px;max-width:min(360px,calc(100vw - 32px));padding:10px 13px;border-radius:18px;background:rgba(15,23,42,.72);border:1px solid rgba(250,204,21,.18);backdrop-filter:blur(12px);font-size:12px;color:#fde68a;display:none}.event-badge.show{display:block}.zone-chip{display:inline-flex;margin-top:8px;padding:6px 9px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.2);font-size:11px;font-weight:900;color:#bae6fd}.mission-board{display:grid;gap:12px;margin:16px 0;text-align:left}.mission-current{padding:16px;border-radius:20px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.22)}.mission-current h3,.mission-card h3{margin:0 0 6px;font-size:15px}.mission-current p,.mission-card p{margin:0;color:rgba(255,255,255,.65);font-size:13px;line-height:1.4}.mission-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.mission-card{padding:14px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}.mission-card.active{background:rgba(34,197,94,.09);border-color:rgba(34,197,94,.22)}.mission-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.mission-tag{display:inline-flex;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.68);font-weight:800}
+.mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;text-align:left}.mode-card{position:relative;overflow:hidden}.mode-card:before{content:"";position:absolute;inset:-80px;background:radial-gradient(circle at 20% 0,rgba(56,189,248,.16),transparent 35%);pointer-events:none}.mode-card>*{position:relative}.mode-reward{display:inline-flex;margin-top:10px;padding:5px 8px;border-radius:999px;background:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.18);font-size:11px;color:#fde68a;font-weight:900}.mode-card.locked{opacity:.5;cursor:not-allowed}
+.ship-actions{position:sticky;bottom:-28px;margin:18px -28px -28px;padding:16px 18px;background:linear-gradient(180deg,rgba(2,6,23,0),rgba(2,6,23,.96) 34%);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.1);z-index:5}.selected-ship-info{margin-top:14px;padding:13px 15px;border-radius:18px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.16);color:#bae6fd;font-size:13px;text-align:center}.ship-actions .btn{min-width:130px}@media(max-width:760px){.mode-grid{grid-template-columns:1fr}.hero-card{padding:20px}.stats-grid{grid-template-columns:repeat(2,1fr)}.achievement-grid{grid-template-columns:1fr}.hint{display:none}.grid,.shop-grid{grid-template-columns:1fr}.pill{font-size:12px;padding:7px 10px}.panel{padding:20px;border-radius:22px}.boss{top:126px}}
+
+    /* Clean production HUD redesign */
+    .hint,.top,.bars{display:none!important}
+    .hud{position:absolute;top:18px;left:18px;right:18px;display:grid;gap:10px;pointer-events:none}
+    .hud-main{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .hud-cluster{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}.hud-right{justify-content:flex-end}
+    .hud-chip{height:42px;display:flex;align-items:center;gap:7px;padding:0 12px;border-radius:18px;background:linear-gradient(180deg,rgba(15,23,42,.76),rgba(2,6,23,.56));border:1px solid rgba(148,163,184,.18);box-shadow:0 12px 34px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.055);backdrop-filter:blur(14px);font-size:13px;color:rgba(226,232,240,.74);white-space:nowrap}.hud-chip.primary{border-color:rgba(56,189,248,.28);background:linear-gradient(180deg,rgba(14,116,144,.28),rgba(2,6,23,.58))}.hud-chip b{font-size:15px;color:#fff;letter-spacing:-.02em}.hud-chip em{font-style:normal;color:rgba(226,232,240,.48);font-size:12px}.hud-ico{filter:drop-shadow(0 0 10px rgba(56,189,248,.22))}
+    .hud-resources{width:min(760px,calc(100vw - 36px));display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:8px}.hud-meter{height:48px;padding:8px 10px 9px;border-radius:16px;background:linear-gradient(180deg,rgba(15,23,42,.66),rgba(2,6,23,.46));border:1px solid rgba(148,163,184,.16);box-shadow:0 12px 34px rgba(0,0,0,.18);backdrop-filter:blur(14px)}.meter-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;font-size:11px;color:rgba(226,232,240,.62);text-transform:uppercase;letter-spacing:.06em}.meter-head b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px;color:rgba(255,255,255,.9);font-size:11px;text-transform:none;letter-spacing:0}.hud-meter .bar-wrap{height:8px;background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.1)}
+    .hud-context{display:flex;align-items:stretch;gap:8px;min-width:0}.skill-chip,.combo-card,.mission-card{display:flex;align-items:center;gap:8px;min-height:42px;padding:10px 13px;border-radius:17px;background:linear-gradient(180deg,rgba(15,23,42,.72),rgba(2,6,23,.52));border:1px solid rgba(148,163,184,.16);box-shadow:0 12px 34px rgba(0,0,0,.2);backdrop-filter:blur(14px);white-space:nowrap}.skill-chip{border-color:rgba(56,189,248,.22);color:#bae6fd}.skill-chip span,.combo-card span,.mission-card span{font-size:11px;color:rgba(226,232,240,.58);text-transform:uppercase;letter-spacing:.06em}.skill-chip b,.combo-card b,.mission-card b{font-size:13px;color:#fff}.combo-card{border-color:rgba(251,146,60,.22);background:linear-gradient(180deg,rgba(127,29,29,.34),rgba(2,6,23,.52))}.combo-card.hot{border-color:rgba(251,113,133,.58);box-shadow:0 0 0 1px rgba(251,113,133,.16),0 18px 46px rgba(127,29,29,.22)}.mission-card{width:min(390px,40vw);align-items:flex-start;flex-direction:column;gap:3px}.mission-card b{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}.hud-help{width:max-content;max-width:calc(100vw - 36px);padding:6px 10px;border-radius:999px;background:rgba(2,6,23,.28);border:1px solid rgba(255,255,255,.06);color:rgba(226,232,240,.42);font-size:11px;backdrop-filter:blur(10px)}
+    .toast{top:96px;min-width:220px;max-width:min(380px,calc(100vw - 40px));padding:12px 15px;border-radius:20px;background:linear-gradient(180deg,rgba(15,23,42,.82),rgba(2,6,23,.68));border-color:rgba(56,189,248,.22);box-shadow:0 20px 58px rgba(0,0,0,.3)}.toast b{font-size:14px}.toast span{font-size:12px}.event-badge{top:232px!important;left:18px!important;right:auto!important;transform:none!important;max-width:min(520px,calc(100vw - 36px));overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:linear-gradient(180deg,rgba(30,41,59,.78),rgba(2,6,23,.62));border:1px solid rgba(167,139,250,.24);box-shadow:0 12px 34px rgba(0,0,0,.22)}.boss{top:96px;width:min(520px,calc(100vw - 36px));z-index:2}.boss-bg{height:10px}.boss-name{font-size:11px}
+    @media(max-width:900px){.hud{top:12px;left:12px;right:12px}.hud-main{align-items:stretch;flex-direction:column}.hud-right{justify-content:flex-start}.hud-resources{width:100%;grid-template-columns:1fr 1fr}.hud-context{flex-wrap:wrap}.mission-card{width:100%;max-width:100%}.hud-help{display:none}.toast{top:148px}.boss{top:148px}.event-badge{top:286px!important;left:12px!important}}
+    @media(max-width:560px){.hud-chip{height:38px;padding:0 10px;font-size:12px}.hud-chip span:not(.hud-ico){display:none}.hud-resources{grid-template-columns:1fr}.xp-meter{order:-1}.skill-chip,.combo-card,.mission-card{min-height:38px;padding:9px 11px}.toast{top:210px}.boss{top:210px}}
+
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="ui">
+    <div class="hud">
+      <div class="hud-main">
+        <div class="hud-cluster">
+          <div class="hud-chip primary"><span class="hud-ico">⏱</span><b id="time">00:00</b><em>/ 10:00</em></div>
+          <div class="hud-chip"><span class="hud-ico">🛡</span><span>Shield</span><b id="hp">100</b></div>
+          <div class="hud-chip"><span class="hud-ico">⭐</span><span>Level</span><b id="level">1</b></div>
+          <div class="hud-chip"><span class="hud-ico">☄️</span><span>Destroyed</span><b id="kills">0</b></div>
+        </div>
+        <div class="hud-cluster hud-right">
+          <div class="hud-chip"><span class="hud-ico">🔩</span><span>Scrap</span><b id="scrap">0</b></div>
+          <div class="hud-chip"><span class="hud-ico">🏆</span><span>Best</span><b id="best">00:00</b></div>
+        </div>
+      </div>
+
+      <div class="hud-resources">
+        <div class="hud-meter xp-meter"><div class="meter-head"><span>XP</span><b id="build">Basic Laser</b></div><div class="bar-wrap"><div class="xp-bar" id="xpBar"></div></div></div>
+        <div class="hud-meter"><div class="meter-head"><span>Boost</span><b><span id="boost">100</span>%</b></div><div class="bar-wrap"><div class="boost-bar" id="boostBar"></div></div></div>
+        <div class="hud-meter"><div class="meter-head"><span>Fire</span><b><span id="fire">100</span>%</b></div><div class="bar-wrap"><div class="fire-bar" id="fireBar"></div></div></div>
+        <div class="hud-meter"><div class="meter-head"><span>Skill</span><b>Press E</b></div><div class="bar-wrap"><div class="ability-bar" id="abilityBar"></div></div></div>
+      </div>
+
+      <div class="hud-context">
+        <div class="skill-chip">✨ <span>Skill</span><b id="ability">Ready</b></div>
+        <div class="combo-card" id="comboPill"><span>🔥 Combo</span><b id="combo">x1.0</b></div>
+        <div class="mission-card" id="missionPill"><span>🎯 Mission</span><b id="mission">—</b></div>
+      </div>
+
+      <div class="hud-help">WASD move · IJKL / mouse aim · Space boost · Shift fire · ESC pause · E skill</div>
+    </div>
+
+    <div class="toast" id="toast"><b id="toastTitle"></b><span id="toastText"></span></div><div class="event-badge" id="eventBadge">⚡ Event</div>
+    <div class="boss" id="boss"><div class="boss-name"><span id="bossName">Boss</span><span id="bossHp">100%</span></div><div class="boss-bg"><div class="boss-bar" id="bossBar"></div></div></div>
+  </div>
+
+  <div class="modal show" id="startModal"><div class="panel"><div class="hero-card"><div class="hero-kicker">SURVIVOR MVP</div><h1 class="hero-title">Space Ship <span>Survivor</span></h1><p>Лети, выживай, собирай XP, открывай достижения и усиливай корабль после каждого забега.</p><div class="stats-grid"><div class="stat"><b id="menuBest">00:00</b><span>Рекорд</span></div><div class="stat"><b id="menuRuns">0</b><span>Забеги</span></div><div class="stat"><b id="menuKills">0</b><span>Всего уничтожено</span></div><div class="stat"><b id="menuAchievements">0/0</b><span>Достижения</span></div></div><div class="row"><button class="btn" id="startBtn">Выбрать режим</button><button class="btn secondary" id="challengeBtn">Быстрый старт</button><button class="btn secondary" id="shopBtn">Ангар</button><button class="btn secondary" id="achievementsBtn">Прогресс</button><button class="btn secondary" id="settingsBtn">Настройки</button></div></div><p class="muted" style="margin-top:14px">Положи этот файл рядом с папкой <b>assets</b>.</p></div></div>
+  <div class="modal" id="modeModal"><div class="panel"><h2>Выбери режим</h2><p>Разные правила забега: классика, свободная игра, серия боссов, миссии и хардкор.</p><div class="mode-grid" id="modeGrid"></div><div class="row" style="margin-top:18px"><button class="btn secondary" id="modeBackBtn">Назад</button></div></div></div>
+  <div class="modal" id="chooseShipModal"><div class="panel"><h2>Выбери корабль</h2><p>Сначала выбери корабль, потом снизу нажми <b>Играть</b> или <b>Прокачать</b>.</p><div class="grid" id="shipGrid"></div><div class="selected-ship-info" id="selectedShipInfo">Выбран корабль</div><div class="ship-actions"><div class="row"><button class="btn" id="chooseShipPlayBtn">Играть</button><button class="btn secondary" id="chooseShipUpgradeBtn">Прокачать</button><button class="btn secondary" id="chooseShipBackBtn">Назад</button></div></div></div></div>
+  <div class="modal" id="shopModal"><div class="panel"><h2>Ангар улучшений</h2><p>Постоянные улучшения покупаются за Scrap и остаются после смерти.</p><div class="pill" style="display:inline-block">🔩 Scrap: <b id="shopScrap">0</b></div><div class="shop-grid" id="shopGrid"></div><div class="row" style="margin-top:18px"><button class="btn" id="backBtn">Назад</button></div></div></div>
+  <div class="modal" id="achievementsModal"><div class="panel"><h2>Прогресс пилота</h2><p>Достижения дают дополнительный Scrap один раз и сохраняются в localStorage.</p><div class="stats-grid"><div class="stat"><b id="achBest">00:00</b><span>Лучшее время</span></div><div class="stat"><b id="achRuns">0</b><span>Забеги</span></div><div class="stat"><b id="achKills">0</b><span>Уничтожено</span></div><div class="stat"><b id="achScrap">0</b><span>Scrap</span></div></div><div class="achievement-grid" id="achievementsGrid"></div><div class="row" style="margin-top:18px"><button class="btn" id="achievementsBackBtn">Назад</button></div></div></div>
+  <div class="modal" id="settingsModal"><div class="panel"><h2>Настройки</h2><p>Настройки сохраняются в <b>localStorage</b>. Музыка запускается только после первого клика по странице.</p><div class="settings-list"><div class="setting-row"><div><h3>Фоновая музыка</h3><p>Включает или выключает MP3-файл из MUSIC_URL.</p></div><button class="switch" id="musicSwitch" aria-label="Toggle music"></button></div><div class="setting-row"><div><h3>Обучение</h3><p>Показывать подсказки по управлению и Safe Zone во время игры.</p></div><button class="switch" id="tutorialSwitch" aria-label="Toggle tutorial"></button></div></div><div class="row" style="margin-top:18px"><button class="btn" id="settingsBackBtn">Назад</button></div></div></div>
+  <div class="modal" id="pauseModal"><div class="panel"><div class="pause-badge">⏸ Пауза</div><h1>Игра остановлена</h1><p>Нажми <b>P</b> или <b>Escape</b>, чтобы продолжить. Здесь можно посмотреть все миссии и выйти в главное меню.</p><div class="mission-board"><div class="mission-current" id="pauseMissionCurrent"></div><div class="section-title"><h3>Все миссии забега</h3><span>задания появляются по одному во время игры</span></div><div class="mission-list" id="pauseMissionList"></div></div><div class="row"><button class="btn" id="resumeBtn">Продолжить</button><button class="btn secondary" id="pauseSettingsBtn">Настройки</button><button class="btn secondary" id="pauseHomeBtn">Главное меню</button></div></div></div>
+  <div class="modal" id="upgradeModal"><div class="panel"><h2 id="upgradeTitle">Модернизация корабля</h2><p id="upgradeText">Выбери один апгрейд</p><div class="grid" id="upgradeGrid"></div></div></div>
+  <div class="modal" id="tutorialModal"><div class="panel tutorial-box"><div class="tutorial-content"><div class="tutorial-icon" id="tutorialIcon">🚀</div><h2 id="tutorialTitle">Обучение</h2><p id="tutorialText">Подсказка</p><div class="tutorial-keys" id="tutorialKeys"></div><button class="btn" id="tutorialOkBtn">Понятно</button><div class="tutorial-progress" id="tutorialProgress">1/4</div></div></div></div>
+  <div class="modal" id="endModal"><div class="panel"><h1 id="endTitle">Корабль уничтожен</h1><p id="endText"></p><div class="row"><button class="btn" id="restartBtn">Новая попытка</button><button class="btn secondary" id="endHomeBtn">Главное меню</button><button class="btn secondary" id="endShopBtn">Улучшить корабль</button><button class="btn secondary" id="endAchievementsBtn">Прогресс</button><button class="btn secondary" id="endSettingsBtn">Настройки</button></div></div></div>
+
+<script>
+(() => {
+  'use strict'
+
+  const PATH = {
+    ship: {
+      scout: '/assets/ships/scout.png', tank: '/assets/ships/tank.png', engineer: '/assets/ships/engineer.png', gunner: '/assets/ships/gunner.png', phantom: '/assets/ships/phantom.png',
+    },
+    enemy: {
+      normal: '/assets/enemies/asteroid_small.png', elite: '/assets/enemies/asteroid_big.png', fast: '/assets/enemies/drone_fast.png', sniper: '/assets/enemies/drone_sniper.png', mine: '/assets/enemies/mine.png', magnet: '/assets/enemies/magnet.png', shield: '/assets/enemies/shield.png',
+    },
+    boss: {
+      scout_boss: '/assets/bosses/scout_boss.png', laser_boss: '/assets/bosses/laser_boss.png', asteroid_titan: '/assets/bosses/asteroid_titan.png', mothership: '/assets/bosses/mothership.png',
+    },
+    item: {
+      xp: '/assets/items/xp.png', xp_rare: '/assets/items/xp_rare.png', scrap: '/assets/items/scrap.png', health: '/assets/items/health.png', energy: '/assets/items/energy.png',
+    },
+    effect: {
+      laser_cyan: '/assets/effects/laser_cyan.png', laser_red: '/assets/effects/laser_red.png', plasma_beam: '/assets/effects/plasma_beam.png', explosion_small: '/assets/effects/explosion_small.png', explosion_big: '/assets/effects/explosion_big.png', shield_hit: '/assets/effects/shield_hit.png', level_up: '/assets/effects/level_up.png', boost_flame: '/assets/effects/boost_flame.png',
+    },
+    ui: {
+      upgrade_damage: '/assets/ui/upgrade_damage.png', upgrade_fire_rate: '/assets/ui/upgrade_fire_rate.png', upgrade_shield: '/assets/ui/upgrade_shield.png', upgrade_speed: '/assets/ui/upgrade_speed.png', upgrade_magnet: '/assets/ui/upgrade_magnet.png', upgrade_pierce: '/assets/ui/upgrade_pierce.png', upgrade_crit: '/assets/ui/upgrade_crit.png', upgrade_regen: '/assets/ui/upgrade_regen.png', scrap_icon: '/assets/ui/scrap_icon.png', boss_warning: '/assets/ui/boss_warning.png',
+    },
+  }
+
+  const IMG = {}
+  function loadImages(tree, base = '') {
+    for (const [k, v] of Object.entries(tree)) {
+      if (typeof v === 'string') {
+        const im = new Image()
+        im.decoding = 'async'
+        im.src = v
+        im.ok = false
+        im.onload = () => im.ok = true
+        im.onerror = () => im.ok = false
+        IMG[base + k] = im
+      } else loadImages(v, base + k + '.')
+    }
+  }
+  loadImages(PATH)
+
+  const canvas = document.getElementById('game')
+  const ctx = canvas.getContext('2d', { alpha: false })
+  const $ = id => document.getElementById(id)
+  const ids = 'time hp boost fire level kills combo mission ability modeModal modeGrid modeBackBtn comboPill missionPill eventBadge scrap best xpBar boostBar fireBar abilityBar build toast toastTitle toastText boss bossName bossHp bossBar startModal chooseShipModal shopModal achievementsModal settingsModal pauseModal upgradeModal endModal shipGrid shopGrid achievementsGrid upgradeGrid startBtn challengeBtn chooseShipPlayBtn chooseShipUpgradeBtn chooseShipBackBtn shopBtn achievementsBtn achievementsBackBtn settingsBtn settingsBackBtn pauseSettingsBtn endSettingsBtn musicSwitch tutorialSwitch backBtn resumeBtn restartBtn endShopBtn tutorialModal tutorialIcon tutorialTitle tutorialText tutorialKeys tutorialOkBtn tutorialProgress endAchievementsBtn pauseMissionCurrent pauseMissionList pauseHomeBtn endHomeBtn shopScrap menuBest menuRuns menuKills menuAchievements achBest achRuns achKills achScrap upgradeTitle upgradeText endTitle endText'.split(' ')
+  const ui = Object.fromEntries(ids.map(id => [id, $(id)]))
+
+  const KEY = 'sss_assets_edition_v1'
+  const TAU = Math.PI * 2
+  const rnd = (a,b) => Math.random() * (b - a) + a
+  const clamp = (v,a,b) => v < a ? a : v > b ? b : v
+  const d2 = (a,b,c,d) => { const x = a - c, y = b - d; return x*x + y*y }
+  const fmt = s => `${String(s / 60 | 0).padStart(2,'0')}:${String(s % 60 | 0).padStart(2,'0')}`
+  const show = (el,on=true) => el.classList.toggle('show',on)
+  const compact = (a, keep) => { let n = 0; for (let i = 0; i < a.length; i++) if (keep(a[i])) a[n++] = a[i]; a.length = n }
+  const LIMITS = { enemies: 70, bullets: 190, enemyBullets: 90, orbs: 130, fx: 260, dmg: 80 }
+  const trim = (a, max) => { if (a.length > max) a.splice(0, a.length - max) }
+  function trimWorld(){
+    if (!S) return
+    let enemyBullets = 0
+    for (let i = S.bullets.length - 1; i >= 0; i--) {
+      if (S.bullets[i].enemy && ++enemyBullets > LIMITS.enemyBullets) S.bullets.splice(i, 1)
+    }
+    trim(S.enemies, LIMITS.enemies)
+    trim(S.bullets, LIMITS.bullets)
+    trim(S.orbs, LIMITS.orbs)
+    trim(S.fx, LIMITS.fx)
+    trim(S.dmg, LIMITS.dmg)
+  }
+  const save = () => localStorage.setItem(KEY, JSON.stringify(meta))
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) } catch { return null } }
+
+  const Synapse = (() => { const m = Object.create(null); return { on:(t,f)=>((m[t] ||= []).push(f),f), emit:(t,d)=>(m[t] || []).forEach(f => f(d)) } })()
+
+  // Своя музыка: положи файл рядом с index.html в папку /music/
+  // Для локального проекта обычно лучше './music/background.mp3'
+  // Для домена можно поставить '/music/background.mp3'
+  const MUSIC_URL = './music/background.mp3'
+
+  const audio = (() => {
+    let ac, master, bgm, unlocked = false
+
+    const ensure = () => {
+      try {
+        ac ||= new (AudioContext || webkitAudioContext)()
+        master ||= ac.createGain()
+        master.gain.value = .65
+        master.connect(ac.destination)
+        return true
+      } catch { return false }
+    }
+
+    const getBgm = () => {
+      bgm ||= Object.assign(new Audio(MUSIC_URL), {
+        loop: true,
+        preload: 'auto',
+        volume: .38,
+      })
+      return bgm
+    }
+
+    const playMusic = () => {
+      if (!meta?.settings?.music || !unlocked) return
+      const m = getBgm()
+      m.play().catch(() => {})
+    }
+
+    const stopMusic = () => {
+      if (!bgm) return
+      bgm.pause()
+    }
+
+    const tone = (f=440,d=.05,type='sine',g=.035) => {
+      if (!ensure()) return
+      const o = ac.createOscillator(), v = ac.createGain()
+      o.type = type
+      o.frequency.value = f
+      v.gain.value = g
+      o.connect(v)
+      v.connect(master)
+      o.start()
+      v.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + d)
+      o.stop(ac.currentTime + d)
+    }
+
+    const unlock = () => {
+      if (unlocked) return
+      unlocked = true
+      ensure()
+      ac?.resume?.()
+      playMusic()
+    }
+
+    return {
+      unlock,
+      start: playMusic,
+      stop: stopMusic,
+      shoot:()=>meta.settings.sfx && tone(620,.025,'square',.018),
+      xp:()=>meta.settings.sfx && tone(880,.04,'sine',.025),
+      hit:()=>meta.settings.sfx && tone(120,.08,'sawtooth',.03),
+      level:()=>{ if(!meta.settings.sfx) return; tone(660,.06); setTimeout(()=>tone(990,.08),60) },
+      boss:()=>meta.settings.sfx && tone(90,.18,'sawtooth',.055)
+    }
+  })()
+
+  const meta = Object.assign({ scrap:0, best:0, ship:'scout', shop:{hp:0,dmg:0,fire:0,boost:0,magnet:0,scrap:0}, abilityShop:{scout:0,tank:0,engineer:0,gunner:0,phantom:0}, settings:{music:true,sfx:true,tutorial:true}, tutorialDone:false, stats:{runs:0,kills:0,bossKills:0,wins:0,bestLevel:1,totalTime:0}, achievements:{} }, load() || {})
+  meta.shop = Object.assign({hp:0,dmg:0,fire:0,boost:0,magnet:0,scrap:0}, meta.shop || {})
+  meta.abilityShop = Object.assign({scout:0,tank:0,engineer:0,gunner:0,phantom:0}, meta.abilityShop || {})
+  meta.settings = Object.assign({music:true,sfx:true,tutorial:true}, meta.settings || {})
+  meta.tutorialDone = !!meta.tutorialDone
+  meta.tutorialSeen = Object.assign({intro:false,safe:false}, meta.tutorialSeen || {})
+  if (meta.tutorialDone) meta.tutorialSeen = { intro:true, safe:true }
+  meta.stats = Object.assign({runs:0,kills:0,bossKills:0,wins:0,bestLevel:1,totalTime:0}, meta.stats || {})
+  meta.achievements ||= {}
+
+  const SHIPS = [
+    ['scout','Scout','Охотник за combo: быстрый, уклонение 16%, XP +8%','ship.scout', p => { p.speed*=1.2; p.maxHp-=10; p.dodge=.16; p.comboWindow=.9; p.xpMul=1.08; p.traitName='Scout Instinct'; p.traitText='скорость · уклонение · длиннее combo' }],
+    ['tank','Tank','Броня: меньше урона, ударная волна при столкновении','ship.tank', p => { p.maxHp+=55; p.hp+=55; p.speed*=.84; p.r+=3; p.damageTaken=.78; p.contactDamageTaken=.62; p.shockRadius=112; p.shockCooldown=0; p.traitName='Armor Pulse'; p.traitText='броня · shockwave · живучесть' }],
+    ['engineer','Engineer','Поддержка: сильный магнит, реген, зоны держатся дольше','ship.engineer', p => { p.magnet+=95; p.regen+=1.6; p.zoneDurationBonus=3; p.scrapMul+=.1; p.traitName='Support Drone'; p.traitText='магнит · реген · зоны +3s' }],
+    ['gunner','Gunner','Штурмовик: двойной лазер, быстрый огонь, больше fire energy','ship.gunner', p => { p.fireRate*=.72; p.damage*=1.08; p.double=true; p.maxFire+=35; p.fire=p.maxFire; p.fireDrain*=.72; p.bulletSpeed*=1.06; p.traitName='Twin Cannon'; p.traitText='двойной лазер · скорострельность' }],
+    ['phantom','Phantom','Фантом: мощный boost и меньше урона во время форсажа','ship.phantom', p => { p.boostPower*=1.42; p.boostDrain*=.72; p.speed*=1.06; p.phaseDamageTaken=.34; p.comboWindow=.45; p.traitName='Phase Drive'; p.traitText='boost · phase-защита · манёвренность' }],
+  ]
+
+  const BIOMES = [
+    {id:'asteroid', name:'Asteroid Field', icon:'☄️', text:'Больше астероидов, чуть больше Scrap', hp:1.05, speed:.96, xp:1, scrap:1.15, fog:0},
+    {id:'nebula', name:'Nebula Zone', icon:'🌌', text:'Туман: видимость ниже, XP выше', hp:.96, speed:.98, xp:1.18, scrap:1, fog:.22},
+    {id:'station', name:'Abandoned Station', icon:'🛰️', text:'Больше Scrap и миссий', hp:1, speed:1, xp:1, scrap:1.25, fog:0},
+    {id:'solar', name:'Solar Storm', icon:'☀️', text:'Быстрые враги, чаще Damage Zone', hp:1, speed:1.1, xp:1.08, scrap:1, fog:.08},
+    {id:'deep', name:'Deep Space', icon:'🕳️', text:'Опаснее, но награды выше', hp:1.12, speed:1.05, xp:1.15, scrap:1.2, fog:.14},
+  ]
+  const ABILITY = {
+    scout:{name:'Dash', cd:7, duration:.28, text:'рывок сквозь врагов'},
+    tank:{name:'Shockwave', cd:10, duration:.25, text:'отталкивает и дамажит'},
+    engineer:{name:'Repair Field', cd:12, duration:5.5, text:'ремонтная зона'},
+    gunner:{name:'Overload', cd:13, duration:4.5, text:'безумная стрельба'},
+    phantom:{name:'Ghost Mode', cd:11, duration:3.2, text:'проход сквозь врагов'},
+  }
+  const ABILITY_MAX = 5
+  const abilityLevel = ship => clamp(meta.abilityShop?.[ship] || 0, 0, ABILITY_MAX)
+  const abilityCost = ship => 180 + abilityLevel(ship) * 130
+  function scaledAbility(ship){
+    const a = ABILITY[ship] || ABILITY.scout, lvl = abilityLevel(ship), power = 1 + lvl * .18
+    return { ...a, lvl, power, cd: Math.max(3.8, a.cd * (1 - lvl * .075)), duration: a.duration * (1 + lvl * .12), text: a.text + (lvl ? ` · Lv.${lvl}` : '') }
+  }
+  function abilityUpgradeText(ship, lvl = abilityLevel(ship)){
+    const next = Math.min(ABILITY_MAX, lvl + 1), p = 1 + next * .18, cd = Math.max(3.8, (ABILITY[ship]?.cd || 8) * (1 - next * .075))
+    const common = `Lv.${lvl}/${ABILITY_MAX} → Lv.${next} · CD ${cd.toFixed(1)}s`
+    return ({
+      scout: `${common} · dash ${Math.round(210 * p)}px`,
+      tank: `${common} · wave ${Math.round(185 * p)}px / ${Math.round(125 * p)} dmg`,
+      engineer: `${common} · field ${Math.round(175 * (1 + next * .10))}px · regen +${Math.round(24 * p)}/s`,
+      gunner: `${common} · duration ${(ABILITY.gunner.duration * (1 + next * .12)).toFixed(1)}s · fire +${Math.round(45 * p)}`,
+      phantom: `${common} · ghost ${(ABILITY.phantom.duration * (1 + next * .12)).toFixed(1)}s · safer phase`,
+    })[ship] || common
+  }
+  let pendingMode = 'normal'
+  const GAME_MODES = Object.freeze({
+    normal: { icon:'🚀', name:'Классика', desc:'Выживи 10 минут. Базовый режим для прокачки и рекорда.', winTime:600, scrapMul:1, maxEnemyBonus:0, hpMul:1, speedMul:1, eliteBonus:0, spawnMul:1 },
+    free: { icon:'🌌', name:'Свободная игра', desc:'Без финала. Волны и боссы бесконечно усиливаются.', winTime:0, endless:true, scrapMul:1.15, maxEnemyBonus:6, hpMul:1.06, speedMul:1.03, eliteBonus:.015, spawnMul:.92 },
+    boss: { icon:'👑', name:'Boss Rush', desc:'Серия битв с боссами. Меньше мусорных врагов, больше награда.', winTime:0, bossRush:true, bossGoal:4, scrapMul:1.65, maxEnemyBonus:-16, hpMul:1.08, speedMul:1, eliteBonus:.03, spawnMul:1.25 },
+    mission: { icon:'🎯', name:'Миссионный забег', desc:'Играй через задания. Выполни 5 миссий, чтобы победить.', winTime:0, missionGoal:5, scrapMul:1.3, maxEnemyBonus:2, hpMul:1, speedMul:1, eliteBonus:.02, spawnMul:.95 },
+    hardcore: { icon:'💀', name:'Hardcore', desc:'Меньше щита, опаснее враги, зато Scrap x2.', winTime:600, hardcore:true, scrapMul:2, maxEnemyBonus:10, hpMul:1.22, speedMul:1.12, eliteBonus:.06, spawnMul:.78 },
+    challenge: { icon:'⚡', name:'Daily Challenge', desc:'Сложный ежедневный забег с усиленными волнами.', winTime:600, scrapMul:1.35, maxEnemyBonus:8, hpMul:1.12, speedMul:1.08, eliteBonus:.035, spawnMul:1 }
+  })
+  const modeCfg = (id = pendingMode) => GAME_MODES[id] || GAME_MODES.normal
+  const pickBiome = () => BIOMES[Math.random() * BIOMES.length | 0]
+  const SHOP = [
+    ['hp','Стартовый щит','+15 shield за уровень',70,5],['dmg','Базовый урон','+10% урона за уровень',90,5],['fire','Перезарядка','+7% скорострельности',90,5],['boost','Форсаж','+10 boost и реген',65,5],['magnet','Магнит','+22 радиус сбора',55,6],['scrap','Утилизация','Больше Scrap после забега',120,4],
+  ]
+  const ACHIEVEMENTS = [
+    {id:'first_launch', icon:'🚀', name:'Первый запуск', desc:'Сделай первый забег', reward:25, goal:1, value:()=>meta.stats.runs},
+    {id:'minute_survivor', icon:'⏱️', name:'Первая минута', desc:'Продержись 60 секунд', reward:35, goal:60, value:()=>meta.best},
+    {id:'three_minutes', icon:'🛰️', name:'Стабильный пилот', desc:'Продержись 3 минуты', reward:70, goal:180, value:()=>meta.best},
+    {id:'hunter_100', icon:'☄️', name:'Охотник', desc:'Уничтожь 100 врагов суммарно', reward:80, goal:100, value:()=>meta.stats.kills},
+    {id:'boss_breaker', icon:'👑', name:'Анти-босс', desc:'Уничтожь первого босса', reward:120, goal:1, value:()=>meta.stats.bossKills},
+    {id:'level_10', icon:'⭐', name:'Прокачка', desc:'Достигни 10 уровня', reward:100, goal:10, value:()=>meta.stats.bestLevel},
+    {id:'scrap_500', icon:'🔩', name:'Инженер ангара', desc:'Накопи 500 Scrap', reward:90, goal:500, value:()=>meta.scrap},
+    {id:'survivor_10', icon:'🏆', name:'Выживший', desc:'Доживи до 10 минут', reward:260, goal:1, value:()=>meta.stats.wins},
+  ]
+  const ENEMY = {
+    normal:{img:'enemy.normal', r:19, hp:50, s:78, dmg:11, c:'#94a3b8'}, elite:{img:'enemy.elite', r:27, hp:155, s:56, dmg:20, c:'#a855f7'}, fast:{img:'enemy.fast', r:14, hp:38, s:150, dmg:10, c:'#fb7185'}, sniper:{img:'enemy.sniper', r:18, hp:64, s:90, dmg:9, c:'#f97316'}, mine:{img:'enemy.mine', r:18, hp:28, s:70, dmg:18, c:'#facc15'}, magnet:{img:'enemy.magnet', r:21, hp:95, s:68, dmg:8, c:'#c084fc'}, shield:{img:'enemy.shield', r:23, hp:125, s:58, dmg:12, c:'#60a5fa'}, healer:{img:'enemy.shield', r:20, hp:95, s:64, dmg:7, c:'#22c55e'}, commander:{img:'enemy.magnet', r:24, hp:180, s:52, dmg:14, c:'#facc15'},
+  }
+  const BOSSES = [
+    {t:120, name:'Scout Boss', key:'boss.scout_boss', r:54, hp:1350, s:70, dmg:16},
+    {t:240, name:'Laser Drone Boss', key:'boss.laser_boss', r:62, hp:2500, s:58, dmg:20},
+    {t:420, name:'Asteroid Titan', key:'boss.asteroid_titan', r:78, hp:4300, s:45, dmg:26},
+    {t:555, name:'Mothership', key:'boss.mothership', r:92, hp:6200, s:38, dmg:34},
+  ]
+
+  const UPG = [
+    ['ui.upgrade_shield','Сильный щит','+35 shield', p => { p.maxHp+=35; p.hp=Math.min(p.maxHp,p.hp+55) }],
+    ['ui.upgrade_damage','Мощный лазер','+28% урона', p => p.damage*=1.28],
+    ['ui.upgrade_fire_rate','Быстрая перезарядка','Стреляет чаще', p => p.fireRate*=.84],
+    ['ui.upgrade_speed','Ускоритель','+16% скорость', p => p.speed*=1.16],
+    ['ui.upgrade_magnet','Грави-магнит','Дальше собирает XP', p => p.magnet+=65],
+    ['ui.upgrade_pierce','Пробивание','Лазер пробивает цель', p => p.pierce++],
+    ['ui.upgrade_regen','Регенерация','Щит восстанавливается', p => p.regen+=1.4],
+    ['ui.upgrade_crit','Критический модуль','Шанс критического урона', p => p.crit+=.08],
+    ['effect.plasma_beam','Плазменный луч','Каждый 5-й выстрел мощнее', p => p.plasma=true],
+    ['effect.explosion_small','Ракетный заряд','Каждый 7-й выстрел взрывается', p => p.rocket=true],
+    ['effect.laser_red','Двойной лазер','Два выстрела под углом', p => p.double=true],
+    ['effect.shield_hit','Крио-удар','Выстрелы замедляют врагов', p => p.slow+=.18],
+  ]
+
+  let S = null
+  const keys = Object.create(null)
+  const mouse = {x:0,y:0}
+  let aimAngle = 0
+
+  function basePlayer(){
+    const sh = meta.shop
+    const p = {x:innerWidth/2,y:innerHeight/2,r:18,hp:100+sh.hp*15,maxHp:100+sh.hp*15,speed:255,boost:100+sh.boost*10,maxBoost:100+sh.boost*10,boostPower:1.75,boostDrain:38,boostRegen:24+sh.boost*2,fire:100,maxFire:100,fireRate:.3*(1-sh.fire*.07),fireTimer:0,fireDrain:42,fireRegen:26,bulletSpeed:780,damage:30*(1+sh.dmg*.1),pierce:1,magnet:120+sh.magnet*22,regen:0,crit:.05,double:false,plasma:false,rocket:false,slow:0,shot:0,build:'Basic Laser',scrapMul:1+sh.scrap*.15,xpMul:1,damageTaken:1,contactDamageTaken:1,phaseDamageTaken:1,dodge:0,comboWindow:0,zoneDurationBonus:0,traitName:'Standard Core',traitText:'сбалансированный корабль',img:'ship.'+meta.ship, ability:scaledAbility(meta.ship), abilityCd:0, abilityT:0, evo:null, ghost:false, overload:false, repairField:null}
+    SHIPS.find(s => s[0] === meta.ship)?.[4](p)
+    p.hp = p.maxHp
+    return p
+  }
+  function createStars(n,w,h){ return Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:rnd(.5,2),s:rnd(10,58),a:rnd(.22,.9)})) }
+  function resize(){ const dpr=Math.min(devicePixelRatio||1,2), w=innerWidth, h=innerHeight; canvas.width=w*dpr|0; canvas.height=h*dpr|0; canvas.style.width=w+'px'; canvas.style.height=h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); if(S){S.W=w;S.H=h;S.DPR=dpr} }
+  function reset(){
+    cancelAnimationFrame(S?.raf)
+    resize()
+    const cfg = modeCfg(pendingMode)
+    S = {W:innerWidth,H:innerHeight,DPR:Math.min(devicePixelRatio||1,2),last:performance.now(),raf:0,run:true,pause:false,reason:null,mode:pendingMode,modeCfg:cfg,biome:pickBiome(),time:0,level:1,xp:0,nextXp:70,kills:0,wave:0,spawnT:.3,spawnD:.9,shake:0,flash:0,uiTick:0,boss:null,bossKills:0,bossQueue:0,bosses:new Set(),safe:{active:false,t:0,next:45,duration:9,r:190,x:0,y:0,type:'safe'},event:{active:false,type:null,t:0,next:75},mission:null,missionNext:8,combo:{count:0,timer:0,max:0},runStats:{xp:0,scrapBonus:0,missions:0,events:0,maxCombo:0,zoneVisits:0,biome:'',mode:pendingMode},tutorial:{enabled:!!(meta.settings.tutorial&&!meta.tutorialDone),type:null,timer:.45,active:false},keys,mouse,p:basePlayer(),stars:createStars(180,innerWidth,innerHeight),enemies:[],bullets:[],orbs:[],fx:[],dmg:[]}
+    S.runStats.biome=S.biome.name
+    if(cfg.hardcore){ S.p.maxHp=Math.max(35,Math.floor(S.p.maxHp*.58)); S.p.hp=S.p.maxHp; S.safe.next=65 }
+    if(S.mode==='challenge'){ S.safe.next=75; S.nextXp=90 }
+    if(cfg.bossRush){ S.safe.next=9999; S.event.next=9999; S.spawnT=.8; S.bossQueue=0 }
+    updateBuild()
+    aimAngle=0
+    show(ui.startModal,false); show(ui.modeModal,false); show(ui.chooseShipModal,false); show(ui.endModal,false); show(ui.shopModal,false); show(ui.pauseModal,false); show(ui.upgradeModal,false); show(ui.tutorialModal,false)
+    toast(`${cfg.icon} ${cfg.name}`, cfg.desc)
+    setTimeout(()=>toast(S.biome.icon+' '+S.biome.name, S.biome.text),520)
+    setTimeout(()=>toast(S.p.traitName, S.p.traitText+' · Skill: '+S.p.ability.name+' (E)'),980)
+    S.raf=requestAnimationFrame(loop)
+  }
+
+function setPause(v, reason='manual'){ if(!S?.run) return; S.pause=v; S.reason=v?reason:null; if(reason==='manual'){ if(v) renderPauseMissions(); show(ui.pauseModal,v) } if(!v) show(ui.pauseModal,false); S.last=performance.now() }
+  function toast(t,txt=''){ ui.toastTitle.textContent=t; ui.toastText.textContent=txt; show(ui.toast,true); clearTimeout(toast.t); toast.t=setTimeout(()=>show(ui.toast,false),1800) }
+  function img(key){ const im=IMG[key]; return im?.ok ? im : null }
+  function drawImg(key,x,y,w,h,a=0,alpha=1){ const im=img(key); if(!im) return false; ctx.save(); ctx.globalAlpha=alpha; ctx.translate(x,y); ctx.rotate(a); ctx.drawImage(im,-w/2,-h/2,w,h); ctx.restore(); ctx.globalAlpha=1; return true }
+  function iconHTML(key, fallback){ const im = IMG[key]; return `<div class="icon">${im ? `<img src="${im.src}" onerror="this.remove()">` : fallback}</div>` }
+
+  function loop(now){
+    if(!S) return
+    const dt=Math.min((now-S.last)/1000||0,.033)
+    S.last=now
+    try { update(dt); render(); updateUi() }
+    catch (err) { console.error('Game loop error:', err); S.pause = true; toast('Game paused', 'Engine protected from crash. Press P to continue.') }
+    S.raf=requestAnimationFrame(loop)
+  }
+  function update(dt){ if(!S.run || S.pause) return; S.time+=dt; S.shake=Math.max(0,S.shake-dt); S.flash=Math.max(0,S.flash-dt); updateTutorial(dt); updateStars(dt); updateCombo(dt); updateMission(dt); updateWorldEvent(dt); updatePlayer(dt); updateWaves(dt); updateBosses(); updateSafeZone(dt); updateEnemies(dt); updateBullets(dt); updateOrbs(dt); updateFx(dt); trimWorld(); if(S.p.hp<=0) end(false); const cfg=S.modeCfg||modeCfg(S.mode); if(cfg.winTime&&S.time>=cfg.winTime) end(true); if(cfg.missionGoal&&S.runStats.missions>=cfg.missionGoal) end(true); if(cfg.bossGoal&&S.bossKills>=cfg.bossGoal&&!S.boss) end(true) }
+  function updateStars(dt){ const m=S.p.boosting?2.2:1; for(const s of S.stars){ s.y+=s.s*m*dt; if(s.y>S.H+8){s.y=-8;s.x=Math.random()*S.W} } }
+  function aim(){ let x=0,y=0; if(keys.KeyI)y--; if(keys.KeyK)y++; if(keys.KeyJ)x--; if(keys.KeyL)x++; if(x||y) return aimAngle=Math.atan2(y,x); return aimAngle=Math.atan2(mouse.y-S.p.y,mouse.x-S.p.x) }
+  function updatePlayer(dt){ const p=S.p; let x=0,y=0; if(keys.KeyW||keys.ArrowUp)y--; if(keys.KeyS||keys.ArrowDown)y++; if(keys.KeyA||keys.ArrowLeft)x--; if(keys.KeyD||keys.ArrowRight)x++; p.boosting=!!(keys.Space&&p.boost>0&&(x||y)); p.overing=!!((keys.ShiftLeft||keys.ShiftRight)&&p.fire>0); p.boost=clamp(p.boost+(p.boosting?-p.boostDrain:p.boostRegen)*dt,0,p.maxBoost); p.fire=clamp(p.fire+(p.overing?-p.fireDrain:p.fireRegen)*dt,0,p.maxFire); if(x||y){ const l=Math.hypot(x,y), sp=p.speed*(p.boosting?p.boostPower:1); p.x+=x/l*sp*dt; p.y+=y/l*sp*dt } p.x=clamp(p.x,p.r,S.W-p.r); p.y=clamp(p.y,p.r,S.H-p.r); if(p.regen) p.hp=Math.min(p.maxHp,p.hp+p.regen*dt); applyZonePlayerEffects(dt); applyActiveAbility(dt); p.fireTimer-=dt; if(p.fireTimer<=0){ shoot(); p.fireTimer=p.fireRate*((p.overing||p.overload)?.42:1) } }
+  function shoot(){ if(S.bullets.length > LIMITS.bullets - 8) return; const p=S.p, a=aim(), over=p.overing || p.overload; p.shot++; const crit=Math.random()<p.crit; const evo=p.evo, rail=evo==='railgun'&&p.shot%3===0, missile=evo==='missile'&&p.shot%3===0; const common={dmg:p.damage*(crit?2.1:1)*(over?.9:1)*(p.zoneDamage||1)*(rail?2.2:1)*(p.overload?1.25:1),pierce:p.pierce+(p.plasma&&p.shot%5===0?2:0)+(rail?5:0),over,rocket:(p.rocket&&p.shot%7===0)||missile,slow:p.slow+(rail?.08:0),life:1.2+(rail?.35:0),a}; const add=a=>S.bullets.push({x:p.x+Math.cos(a)*28,y:p.y+Math.sin(a)*28,vx:Math.cos(a)*p.bulletSpeed*(over?1.13:1)*(rail?1.25:1),vy:Math.sin(a)*p.bulletSpeed*(over?1.13:1)*(rail?1.25:1),r:rail?8:common.rocket?7:over?5:4,...common,a}); if(p.evo==='gatling'||p.overload){add(a-.16);add(a);add(a+.16)} else p.double?(add(a-.1),add(a+.1)):add(a); if(p.plasma&&p.shot%5===0) p.build='Plasma Beam'; if(p.rocket&&p.shot%7===0) p.build='Rocket Laser'; if(p.evo) p.build=EVOLUTIONS[p.evo]?.name||p.build; audio.shoot() }
+
+
+
+  function comboMult(){ return 1 + Math.min(2.5, Math.floor((S.combo?.count || 0) / 8) * .15) }
+  function updateCombo(dt){ const c=S.combo; if(!c) return; if(c.count>0){ c.timer-=dt; if(c.timer<=0) c.count=0 } c.max=Math.max(c.max,c.count); S.runStats.maxCombo=Math.max(S.runStats.maxCombo,c.max) }
+  function addCombo(){ const c=S.combo; c.count++; c.timer=3.6+(S.p?.comboWindow||0); c.max=Math.max(c.max,c.count); if(c.count===10||c.count===25||c.count===50) toast(`Combo x${comboMult().toFixed(1)}`, 'Keep destroying enemies without getting hit') }
+  function resetCombo(){ if(S?.combo?.count>0){ S.combo.count=0; S.combo.timer=0 } }
+  function takeDamage(amount, source='hit'){
+    const p=S?.p
+    if(!p || amount<=0) return 0
+    if(p.ghost && source==='contact') return 0
+    if(p.dodge && source !== 'boss' && Math.random() < p.dodge){
+      toast('DODGE', p.traitName || 'Scout')
+      effect('effect.shield_hit', p.x, p.y, 64, .18)
+      return 0
+    }
+    let dmg = amount * (p.damageTaken || 1)
+    if(source === 'contact') dmg *= (p.contactDamageTaken || 1)
+    if(p.boosting && p.phaseDamageTaken) dmg *= p.phaseDamageTaken
+    p.hp -= dmg
+    if(dmg > .1){
+      resetCombo()
+      if(S.mission?.id === 'nodamage') failMission()
+    }
+    S.flash=.18
+    S.shake=.16
+    if(p.shockRadius && source === 'contact' && (!p.shockCooldown || S.time >= p.shockCooldown)){
+      p.shockCooldown = S.time + 4.5
+      for(const e of S.enemies){
+        if(e.hp>0 && e.type !== 'boss' && d2(e.x,e.y,p.x,p.y) < p.shockRadius*p.shockRadius){
+          e.hp -= 34
+          e.slow = Math.max(e.slow || 0, .75)
+          particles(e.x,e.y,'#60a5fa',5)
+        }
+      }
+      effect('effect.shield_hit', p.x, p.y, p.shockRadius*2.2, .25)
+      toast('Armor Pulse', 'Броня отбросила ближайших врагов')
+    }
+    return dmg
+  }
+
+
+  function abilityReady(){ return S?.p && S.p.abilityCd <= 0 && !S.pause }
+  function useAbility(){
+    const p=S?.p; if(!p || p.abilityCd>0 || S.pause) return
+    const a=p.ability, ship=meta.ship
+    p.abilityCd=a.cd; p.abilityT=a.duration
+    toast(a.name, a.text)
+    if(ship==='scout'){
+      const ang=aim(), dist=210*a.power
+      p.x=clamp(p.x+Math.cos(ang)*dist,p.r,S.W-p.r); p.y=clamp(p.y+Math.sin(ang)*dist,p.r,S.H-p.r); p.ghost=true; effect('effect.boost_flame',p.x,p.y,120,.25)
+    } else if(ship==='tank') {
+      shockwave(p.x,p.y,185*a.power,125*a.power); effect('effect.shield_hit',p.x,p.y,360*a.power,.35)
+    } else if(ship==='engineer') {
+      p.repairField={x:p.x,y:p.y,r:175*(1+a.lvl*.10),regen:24*a.power,t:a.duration}; effect('effect.level_up',p.x,p.y,220,.35)
+    } else if(ship==='gunner') {
+      p.overload=true; p.fire=Math.min(p.maxFire,p.fire+45*a.power)
+    } else if(ship==='phantom') {
+      p.ghost=true; p.phaseDamageTaken=Math.max(.025,.08/a.power); effect('effect.shield_hit',p.x,p.y,120,.25)
+    }
+  }
+  function shockwave(x,y,r,dmg){
+    const rr=r*r
+    for(const e of S.enemies){ if(e.hp<=0||e.type==='boss') continue; const dx=e.x-x, dy=e.y-y, dd=dx*dx+dy*dy; if(dd<rr){ const l=Math.max(1,Math.hypot(dx,dy)); e.x+=dx/l*55; e.y+=dy/l*55; e.hp-=dmg; e.slow=Math.max(e.slow||0,.9); particles(e.x,e.y,'#67e8f9',6) } }
+  }
+  function applyActiveAbility(dt){
+    const p=S.p; if(p.abilityCd>0) p.abilityCd=Math.max(0,p.abilityCd-dt); if(p.abilityT>0) p.abilityT=Math.max(0,p.abilityT-dt)
+    if(p.abilityT<=0){ p.overload=false; p.ghost=false; if(meta.ship==='phantom') p.phaseDamageTaken=.34 }
+    if(p.repairField){ p.repairField.t-=dt; if(d2(p.x,p.y,p.repairField.x,p.repairField.y)<p.repairField.r*p.repairField.r) p.hp=Math.min(p.maxHp,p.hp+(p.repairField.regen||24)*dt); if(p.repairField.t<=0) p.repairField=null }
+    if(p.evo==='guardian' && S.time%1<dt) shockwave(p.x,p.y,120,18)
+  }
+  function updateAbility(dt){ applyActiveAbility(dt) }
+  const EVOLUTIONS={railgun:{name:'Railgun Evolution'},missile:{name:'Missile Storm'},gatling:{name:'Star Gatling'},guardian:{name:'Guardian Core'}}
+  const MISSIONS = [
+    {id:'kills', title:'Уничтожь {goal} врагов', icon:'☄️', time:40, goal:t=>t<180?12:t<360?20:32, reward:m=>({xp:m.goal*2,scrap:Math.ceil(m.goal/3)})},
+    {id:'xp', title:'Собери {goal} XP', icon:'⭐', time:45, goal:t=>t<180?60:t<360?110:170, reward:m=>({xp:35,scrap:8})},
+    {id:'safe', title:'Доберись до зоны', icon:'🛡️', time:35, goal:1, reward:()=>({xp:45,scrap:10})},
+    {id:'nodamage', title:'Не получай урон {goal} сек.', icon:'💎', time:30, goal:t=>t<360?18:24, reward:()=>({xp:55,scrap:12})},
+    {id:'elite', title:'Уничтожь элитного врага', icon:'👾', time:55, goal:1, reward:()=>({xp:70,scrap:18})},
+  ]
+  function missionText(m=S.mission){ if(!m) return 'ожидание'; return `${m.icon} ${m.title.replace('{goal}', m.goal)} · ${Math.floor(m.progress)}/${m.goal} · ${Math.ceil(m.t)}s` }
+  function startMission(){ if(S.mission || S.boss) return; const pool=MISSIONS.filter(m=>m.id!=='safe'||S.safe.active); const tpl=pool[Math.random()*pool.length|0]; const goal=typeof tpl.goal==='function'?tpl.goal(S.time):tpl.goal; S.mission={...tpl,goal,progress:0,t:tpl.time,lastDamage:S.p.hp}; toast('New mission', missionText({ ...tpl, goal, progress:0, t:tpl.time })) }
+  function addMissionProgress(id,v=1){ const m=S.mission; if(!m||m.id!==id) return; m.progress=Math.min(m.goal,m.progress+v); if(m.progress>=m.goal) completeMission() }
+  function completeMission(){ const m=S.mission; if(!m) return; S.mission=null; const r=m.reward(m), scrap=Math.ceil((r.scrap||0)*eventScrapMul()); S.runStats.missions++; S.runStats.scrapBonus+=scrap; meta.scrap+=scrap; if(r.xp) gainXp(r.xp,false); toast('Mission complete', `+${r.xp||0} XP · +${scrap} Scrap`); S.missionNext=S.time+rnd(16,26); save() }
+  function failMission(){ if(S.mission) toast('Mission failed', 'Next objective soon'); S.mission=null; S.missionNext=S.time+rnd(14,22) }
+  function updateMission(dt){ if(!S.mission && S.time>=S.missionNext) startMission(); const m=S.mission; if(!m) return; m.t-=dt; if(m.id==='nodamage') m.progress+=dt; if(m.id==='safe' && S.safe.active && d2(S.p.x,S.p.y,S.safe.x,S.safe.y)<S.safe.r*S.safe.r) addMissionProgress('safe',1); if(m.t<=0) failMission() }
+
+  function missionGoal(tpl){ return typeof tpl.goal==='function' ? tpl.goal(S?.time || 0) : tpl.goal }
+  function missionRewardText(tpl){ const goal=missionGoal(tpl), r=tpl.reward({goal,progress:0,t:tpl.time}); return `+${r.xp||0} XP · +${r.scrap||0} Scrap` }
+  function renderPauseMissions(){
+    if(!ui.pauseMissionCurrent || !ui.pauseMissionList) return
+    const m=S?.mission
+    ui.pauseMissionCurrent.innerHTML = m
+      ? `<h3>Текущая миссия</h3><p>${missionText(m)}</p><div class="mini-bar" style="margin-top:10px"><i style="width:${clamp(m.progress/m.goal,0,1)*100}%"></i></div>`
+      : `<h3>Текущая миссия</h3><p>Сейчас активной миссии нет. Следующая появится через несколько секунд.</p>`
+    ui.pauseMissionList.innerHTML = MISSIONS.map(tpl => {
+      const goal=missionGoal(tpl), active=m?.id===tpl.id, title=tpl.title.replace('{goal}', goal)
+      return `<div class="mission-card${active?' active':''}"><h3>${tpl.icon} ${title}</h3><p>${tpl.id==='safe'?'Появляется, когда активна зона на карте.':'Может выпасть во время забега.'}</p><div class="mission-meta"><span class="mission-tag">${tpl.time}s</span><span class="mission-tag">${missionRewardText(tpl)}</span>${active?'<span class="mission-tag">Текущая</span>':''}</div></div>`
+    }).join('')
+  }
+
+  const EVENTS = {
+    drone:{name:'Drone Swarm', icon:'🛸', text:'Больше быстрых дронов'},
+    scrap:{name:'Scrap Storm', icon:'🔩', text:'Бонус Scrap за миссии'},
+    elite:{name:'Elite Hunter', icon:'👾', text:'Чаще элитные враги'},
+    blackout:{name:'Blackout', icon:'🌑', text:'Темнее экран, но больше XP'},
+  }
+  function startWorldEvent(){ const keys=Object.keys(EVENTS), type=keys[Math.random()*keys.length|0]; S.event={active:true,type,t:28,next:S.time+90}; S.runStats.events++; const e=EVENTS[type]; toast(e.name,e.text) }
+  function updateWorldEvent(dt){ const e=S.event; if(!e) return; if(!e.active && S.time>=e.next && !S.boss) startWorldEvent(); if(!e.active) return; e.t-=dt; if(e.t<=0){ e.active=false; e.type=null; e.next=S.time+rnd(70,95); toast('Event ended','Back to normal waves') } }
+  function eventXpMul(){ return (S.event?.active && S.event.type==='blackout' ? 1.35 : 1) * (S.biome?.xp||1) }
+  function eventScrapMul(){ return (S.event?.active && S.event.type==='scrap' ? 1.6 : 1) * (S.biome?.scrap||1) * (S.mode==='challenge'?1.35:1) }
+
+  function zoneInfo(type){ return ({safe:['SAFE ZONE','#38bdf8','защита'],repair:['REPAIR ZONE','#22c55e','ремонт'],xp:['XP ZONE','#c084fc','больше XP'],damage:['DAMAGE ZONE','#fb7185','урон x1.35'],magnet:['MAGNET ZONE','#facc15','магнит']})[type] || ['SAFE ZONE','#38bdf8','защита'] }
+  function applyZonePlayerEffects(dt){ const z=S.safe,p=S.p; p.zoneDamage=1; p.zoneXp=1; p.zoneMagnet=0; if(!z?.active||d2(p.x,p.y,z.x,z.y)>z.r*z.r) return; if(!z.visited){ z.visited=true; S.runStats.zoneVisits++ } if(z.type==='repair') p.hp=Math.min(p.maxHp,p.hp+18*dt); if(z.type==='damage') p.zoneDamage=1.35; if(z.type==='xp') p.zoneXp=1.35; if(z.type==='magnet') p.zoneMagnet=160 }
+  function updateBuild(){ const p=S?.p; if(!p) return; let b='Basic Laser', evo=null; if(p.plasma&&p.pierce>2&&p.crit>.1){ b='Railgun Evolution'; evo='railgun' } else if(p.rocket&&p.damage>42){ b='Missile Storm'; evo='missile' } else if(p.double&&p.fireRate<.23&&p.plasma){ b='Star Gatling'; evo='gatling' } else if(p.regen>2&&p.magnet>220&&p.maxHp>140){ b='Guardian Core'; evo='guardian' } else if(p.rocket&&p.slow>.15) b='Bomber Build'; else if(p.double&&p.crit>.12) b='Storm Build'; else if(p.plasma&&p.pierce>2) b='Railgun Build'; else if(p.regen>1&&p.maxHp>140) b='Tank Build'; else if(p.magnet>240) b='Collector Build'; else if(p.crit>.16) b='Critical Build'; if(evo && p.evo!==evo) toast('Weapon evolved', EVOLUTIONS[evo].name); p.evo=evo; p.build=b }
+
+  function waveProfile(){
+    const t = S.time
+
+    // 0–60 sec: tutorial-like start, few slow asteroids only
+    // 60–180 sec: comfortable early game
+    // 180–360 sec: medium difficulty
+    // 360+ sec: real survivor pressure
+    if (t < 60)  return { waveSec: 40, spawnD: 1.55, pack: 1, maxEnemies: 10, hpMul: .72, speedMul: .78, elite: 0,        types: ['normal','normal','normal'] }
+    if (t < 120) return { waveSec: 38, spawnD: 1.32, pack: 1, maxEnemies: 15, hpMul: .86, speedMul: .88, elite: .01,      types: ['normal','normal','normal','fast'] }
+    if (t < 180) return { waveSec: 36, spawnD: 1.12, pack: 1, maxEnemies: 22, hpMul: 1,   speedMul: .96, elite: .025,     types: ['normal','normal','fast','fast'] }
+    if (t < 270) return { waveSec: 34, spawnD: .92, pack: 1, maxEnemies: 30, hpMul: 1.1, speedMul: 1,   elite: .04,      types: ['normal','normal','fast','sniper'] }
+    if (t < 360) return { waveSec: 32, spawnD: .78, pack: 2, maxEnemies: 40, hpMul: 1.2, speedMul: 1.04, elite: .06,     types: ['normal','normal','fast','sniper','mine'] }
+    if (t < 480) return { waveSec: 30, spawnD: .62, pack: 2, maxEnemies: 52, hpMul: 1.35,speedMul: 1.08, elite: .08,     types: ['normal','normal','fast','sniper','mine','magnet','healer'] }
+    return            { waveSec: 28, spawnD: .48, pack: 3, maxEnemies: 66, hpMul: 1.55,speedMul: 1.14, elite: .11,      types: ['normal','normal','fast','sniper','mine','magnet','shield','healer','commander'] }
+  }
+
+  const TUTORIAL_INTRO = {
+    icon: '🚀',
+    title: 'Короткое обучение',
+    text: `
+      <div style="display:grid;gap:10px;text-align:left;max-width:720px;margin:0 auto 16px">
+        <div><b>Движение:</b> WASD или стрелки — управляй кораблём.</div>
+        <div><b>Направление стрельбы:</b> I J K L или мышь — выбирай, как удобнее.</div>
+        <div><b>Ускорение:</b> Space — форсаж, <b>Shift</b> — быстрый огонь.</div>
+        <div><b>Пауза:</b> ESC или P — остановить игру.</div>
+        <div><b>Прокачка:</b> собирай XP, повышай уровень и выбирай один из трёх бустов для корабля.</div>
+      </div>
+    `,
+    keys: ['WASD','IJKL','Mouse','Space','Shift','ESC/P','XP']
+  }
+
+  const TUTORIAL_SAFE = {
+    icon: '🛡️',
+    title: 'Безопасная зона',
+    text: 'На карте появилась <b>зона поддержки</b>. Она может защищать, чинить щит, усиливать урон, XP или магнит. Можешь лететь туда или игнорировать — это твой выбор.',
+    keys: ['Safe','Zone']
+  }
+
+  function canShowTutorial(type){
+    if (!S?.tutorial?.enabled || S.tutorial.active || S.boss || !meta.settings.tutorial || meta.tutorialDone) return false
+    if (type === 'intro') return !meta.tutorialSeen.intro
+    if (type === 'safe') return !meta.tutorialSeen.safe
+    return false
+  }
+
+  function showTutorial(type){
+    if (!canShowTutorial(type)) return
+    const t = type === 'safe' ? TUTORIAL_SAFE : TUTORIAL_INTRO
+    S.tutorial.active = true
+    S.tutorial.type = type
+    S.pause = true
+    S.reason = 'tutorial'
+    ui.tutorialIcon.textContent = t.icon
+    ui.tutorialTitle.textContent = t.title
+    ui.tutorialText.innerHTML = t.text
+    ui.tutorialKeys.innerHTML = t.keys.map(k => `<span class="keycap">${k}</span>`).join('')
+    ui.tutorialProgress.textContent = type === 'safe' ? 'Подсказка Safe Zone' : 'Основы игры'
+    show(ui.tutorialModal, true)
+  }
+
+  function closeTutorialModal(markSeen = true){
+    if (!S?.tutorial?.active) return
+    const type = S.tutorial.type
+    show(ui.tutorialModal, false)
+    S.tutorial.active = false
+    S.tutorial.type = null
+    S.pause = false
+    S.reason = null
+    S.last = performance.now()
+
+    if (markSeen && type) {
+      meta.tutorialSeen[type] = true
+      meta.tutorialDone = !!(meta.tutorialSeen.intro && meta.tutorialSeen.safe)
+      save()
+    }
+  }
+
+  function updateTutorial(dt){
+    const t = S.tutorial
+    if (!t?.enabled || t.active || S.boss || meta.tutorialDone || !meta.settings.tutorial || meta.tutorialSeen.intro) return
+    t.timer -= dt
+    if (t.timer <= 0) showTutorial('intro')
+  }
+
+  function safeCooldown(){
+    if (S.time < 180) return 72
+    if (S.time < 360) return 64
+    return 56
+  }
+
+  function safeZonePoint(){
+    const z = S.safe
+    const margin = Math.max(120, z.r * .72)
+    const minPlayer = Math.min(420, z.r + 130)
+
+    for (let i = 0; i < 24; i++) {
+      const x = rnd(margin, S.W - margin)
+      const y = rnd(margin + 40, S.H - margin - 70)
+
+      if (d2(x, y, S.p.x, S.p.y) < minPlayer * minPlayer) continue
+
+      let crowded = false
+      for (const e of S.enemies) {
+        if (e.type !== 'boss' && d2(x, y, e.x, e.y) < (z.r + 115) * (z.r + 115)) {
+          crowded = true
+          break
+        }
+      }
+
+      if (!crowded) return { x, y }
+    }
+
+    return {
+      x: clamp(S.p.x + rnd(-1, 1) * Math.min(360, S.W * .35), margin, S.W - margin),
+      y: clamp(S.p.y + rnd(-1, 1) * Math.min(300, S.H * .32), margin + 40, S.H - margin - 70),
+    }
+  }
+
+  function startSafeZone(){
+    const z = S.safe
+    const point = safeZonePoint()
+
+    z.active = true
+    z.t = z.duration + (S.p?.zoneDurationBonus || 0)
+    z.x = point.x
+    z.y = point.y
+    z.visited = false
+    z.type = (S.biome?.id==='solar' && Math.random()<.45) ? 'damage' : ['safe','repair','xp','damage','magnet'][Math.random()*5|0]
+
+    for (const e of S.enemies) {
+      if (e.type !== 'boss' && d2(e.x, e.y, z.x, z.y) < (z.r + 45) * (z.r + 45)) {
+        e.hp = 0
+        effect('effect.shield_hit', e.x, e.y, 64, .2)
+        particles(e.x, e.y, '#67e8f9', 8)
+      }
+    }
+
+    compact(S.enemies, e => e.hp > 0)
+    { const info=zoneInfo(z.type); toast(info[0]+' spawned', info[2]+' · fly there or ignore it') }
+    if (S.tutorial?.enabled && !meta.tutorialSeen.safe && !meta.tutorialDone) showTutorial('safe')
+  }
+
+  function updateSafeZone(dt){
+    const z = S.safe
+
+    // Boss phases disable safe zone completely.
+    if (S.boss) {
+      if (z.active) toast('Safe Zone disabled', 'Boss phase started')
+      z.active = false
+      z.t = 0
+      z.next = Math.max(z.next, S.time + 35)
+      return
+    }
+
+    if (!z.active && S.time >= z.next) startSafeZone()
+    if (!z.active) return
+
+    z.t -= dt
+
+    const rr = z.r * z.r
+    for (const e of S.enemies) {
+      if (e.type === 'boss' || e.hp <= 0) continue
+
+      const dx = e.x - z.x
+      const dy = e.y - z.y
+      const dd = dx * dx + dy * dy
+
+      if (dd < rr) {
+        const len = Math.max(1, Math.hypot(dx, dy))
+        const push = (z.r - len) + 80
+        e.x += dx / len * push * dt * 5
+        e.y += dy / len * push * dt * 5
+        e.slow = Math.max(e.slow, .35)
+        e.hp -= 55 * dt
+      }
+    }
+
+    for (const b of S.bullets) {
+      if (b.enemy && d2(b.x, b.y, z.x, z.y) < rr) b.life = 0
+    }
+
+    if (z.t <= 0) {
+      z.active = false
+      z.t = 0
+      z.next = S.time + safeCooldown()
+      toast('Safe Zone ended', 'Keep moving')
+    }
+  }
+
+
+  function applyModeProfile(profile){
+    const cfg = S.modeCfg || modeCfg(S.mode)
+    profile.maxEnemies += cfg.maxEnemyBonus || 0
+    profile.hpMul *= cfg.hpMul || 1
+    profile.speedMul *= cfg.speedMul || 1
+    profile.elite += cfg.eliteBonus || 0
+    profile.spawnD *= cfg.spawnMul || 1
+    if (cfg.endless && S.time > 600) {
+      const k = Math.min(2.8, 1 + (S.time - 600) / 900)
+      profile.hpMul *= k
+      profile.speedMul *= Math.min(1.5, 1 + (S.time - 600) / 1800)
+      profile.elite += Math.min(.14, (S.time - 600) / 5000)
+    }
+    if (cfg.bossRush) {
+      profile.maxEnemies = Math.min(18, Math.max(8, profile.maxEnemies))
+      profile.pack = Math.min(1, profile.pack)
+      profile.types = ['normal','fast','sniper']
+      profile.spawnD = Math.max(1.15, profile.spawnD)
+    }
+    profile.maxEnemies = Math.max(6, profile.maxEnemies)
+  }
+
+  function updateWaves(dt){
+    const profile = waveProfile(); profile.hpMul*=S.biome?.hp||1; profile.speedMul*=S.biome?.speed||1; applyModeProfile(profile)
+    if (S.event?.active && S.event.type === 'drone') { profile.spawnD *= .82; profile.pack = Math.min(profile.pack + 1, 3); profile.types.push('fast') }
+    if (S.event?.active && S.event.type === 'elite') profile.elite += .1
+    profile.maxEnemies = Math.min(profile.maxEnemies, LIMITS.enemies - 2)
+    const w = Math.floor(S.time / profile.waveSec) + 1
+
+    if (w > S.wave) {
+      S.wave = w
+      toast('Wave ' + w, S.time < 180 ? 'Easy warm-up' : S.time < 360 ? 'Medium pressure' : 'Danger level rising')
+    }
+
+    S.spawnT -= dt
+    if (S.spawnT <= 0) {
+      let alive = 0
+      for (const e of S.enemies) if (e.type !== 'boss') alive++
+      const freeSlots = Math.max(0, profile.maxEnemies - alive)
+      const count = Math.min(profile.pack, freeSlots)
+
+      for (let i = 0; i < count; i++) spawnEnemy(profile)
+      S.spawnT = profile.spawnD
+    }
+  }
+
+  function canSpawnAt(x, y){
+    const minFromPlayer = S.safe?.active ? S.safe.r + 240 : 260
+
+    if (d2(x, y, S.p.x, S.p.y) < minFromPlayer * minFromPlayer) return false
+
+    if (S.safe?.active && d2(x, y, S.safe.x, S.safe.y) < (S.safe.r + 220) * (S.safe.r + 220)) {
+      return false
+    }
+
+    for (const e of S.enemies) {
+      if (e.type !== 'boss' && d2(x, y, e.x, e.y) < 72 * 72) return false
+    }
+
+    return true
+  }
+
+  function getSpawnPoint(){
+    const m = 90
+
+    for (let i = 0; i < 14; i++) {
+      const side = Math.random() * 4 | 0
+      const x = side === 1 ? S.W + m : side === 3 ? -m : rnd(-m, S.W + m)
+      const y = side === 0 ? -m : side === 2 ? S.H + m : rnd(-m, S.H + m)
+      if (canSpawnAt(x, y)) return { x, y }
+    }
+
+    return null
+  }
+
+  function spawnEnemy(profile = waveProfile()){
+    const point = getSpawnPoint()
+    if (!point) return
+
+    const types = profile.types.slice()
+    if (Math.random() < profile.elite) types.push('elite')
+
+    const type = types[Math.random() * types.length | 0]
+    const e = Object.assign({}, ENEMY[type])
+
+    e.type = type
+    e.hp *= profile.hpMul * (1 + Math.max(0, S.time - 120) * .0018)
+    e.maxHp = e.hp
+    e.s *= profile.speedMul * (1 + Math.max(0, S.time - 180) * .00045)
+    e.x = point.x
+    e.y = point.y
+    e.ang = rnd(0, TAU)
+    e.spin = rnd(-2, 2)
+    e.shoot = rnd(1.15, 2.6)
+    e.slow = 0
+
+    S.enemies.push(e)
+  }
+  function spawnBoss(b, hpMul = 1){
+    if (!b || S.boss) return false
+    const key = (S.modeCfg?.bossRush ? `${b.name} #${S.bossKills + 1}` : b.name)
+    S.bosses.add(key)
+    S.boss=Object.assign({x:S.W/2,y:-120,maxHp:b.hp*hpMul,hp:b.hp*hpMul,shoot:.8,type:'boss',img:b.key,ang:0,spin:.4,slow:0,phase:1,phaseLock:0},b)
+    S.boss.maxHp = S.boss.hp = b.hp * hpMul
+    S.enemies.push(S.boss)
+    toast('BOSS WARNING', b.name+' · phases enabled')
+    audio.boss()
+    return true
+  }
+  function updateBosses(){
+    const cfg = S.modeCfg || modeCfg(S.mode)
+    if (cfg.bossRush) {
+      if (!S.boss && S.time > 1.5) {
+        const idx = Math.min(S.bossQueue || 0, BOSSES.length - 1)
+        const loop = Math.floor((S.bossQueue || 0) / BOSSES.length)
+        if (spawnBoss(BOSSES[idx], 1 + loop * .38 + S.bossKills * .08)) S.bossQueue++
+      }
+      return
+    }
+    const scale = cfg.endless ? Math.max(0, Math.floor((S.time - 600) / 180)) : 0
+    for(const b of BOSSES){
+      const t = b.t + scale * 180
+      const name = scale ? `${b.name}+${scale}` : b.name
+      if(S.time>=t && !S.bosses.has(name)){
+        const copy = {...b, name}
+        spawnBoss(copy, 1 + scale * .22)
+        break
+      }
+    }
+  }
+
+function bossPhase(e){ const r=e.hp/e.maxHp, ph=r<.15?4:r<.4?3:r<.7?2:1; if(ph!==e.phase){ e.phase=ph; e.phaseLock=S.time+2; toast('Boss Phase '+ph, ph===2?'Drones incoming':ph===3?'Laser storm':'Rage mode'); if(ph===2) for(let i=0;i<4;i++) spawnEnemy({...waveProfile(),types:['fast','normal'],pack:1,maxEnemies:LIMITS.enemies,elite:0}); if(ph===3) shockwave(e.x,e.y,240,80); } return ph }
+  function enemyShot(e,a){ let enemyBullets=0; for(const b of S.bullets) if(b.enemy) enemyBullets++; if(enemyBullets>=LIMITS.enemyBullets) return; S.bullets.push({x:e.x,y:e.y,vx:Math.cos(a)*340,vy:Math.sin(a)*340,r:5,dmg:e.type==='boss'?16:10,life:2.4,pierce:1,a,enemy:true,over:true}) }
+  function updateEnemies(dt){ const p=S.p; for(const e of S.enemies){ if(e.hp<=0) continue; e.slow=Math.max(0,e.slow-dt); const slow=e.slow?.55:1; if(e.type==='healer' && S.time%0.5<dt){ for(const x of S.enemies) if(x!==e&&x.hp>0&&x.type!=='boss'&&d2(x.x,x.y,e.x,e.y)<150*150) x.hp=Math.min(x.maxHp,x.hp+18) } if(e.type==='commander'){ for(const x of S.enemies) if(x!==e&&x.hp>0&&x.type!=='boss'&&d2(x.x,x.y,e.x,e.y)<180*180) x.s=(x.baseS||=x.s)*1.02 } if(e.type==='boss'){ const ph=bossPhase(e); e.y += (128-e.y)*dt*.7; e.x += Math.cos(S.time*(1.5+ph*.25))*90*dt; e.shoot-=dt; if(e.shoot<=0){ const spread=ph>=3?3:2, step=ph>=4?.24:.18; for(let i=-spread;i<=spread;i++) enemyShot(e,Math.atan2(p.y-e.y,p.x-e.x)+i*step); e.shoot=Math.max(.42,.98-ph*.13) } } else if(e.type==='sniper'){ const a=Math.atan2(p.y-e.y,p.x-e.x), dd=Math.hypot(p.x-e.x,p.y-e.y); if(dd>330){ e.x+=Math.cos(a)*e.s*dt*slow; e.y+=Math.sin(a)*e.s*dt*slow } else { e.x-=Math.cos(a)*e.s*.45*dt*slow; e.y-=Math.sin(a)*e.s*.45*dt*slow } e.shoot-=dt; if(e.shoot<=0){ enemyShot(e,a); e.shoot=rnd(1.1,2) } } else { const a=Math.atan2(p.y-e.y,p.x-e.x); e.x+=Math.cos(a)*e.s*dt*slow; e.y+=Math.sin(a)*e.s*dt*slow; if(e.type==='magnet'&&d2(e.x,e.y,p.x,p.y)<190*190){ p.x+=(e.x-p.x)*dt*.45; p.y+=(e.y-p.y)*dt*.45 } } e.ang+=e.spin*dt; if(d2(e.x,e.y,p.x,p.y)<(e.r+p.r)*(e.r+p.r)){ takeDamage(e.dmg*dt, e.type==='boss'?'boss':'contact'); if(e.type==='mine'){ e.hp=0; takeDamage(24,'contact'); effect('effect.explosion_big',e.x,e.y,92,.42); particles(e.x,e.y,'#f97316',30) } } } }
+  function updateBullets(dt){ const p=S.p; for(const b of S.bullets){ b.x+=b.vx*dt; b.y+=b.vy*dt; b.life-=dt; if(b.enemy){ if(d2(b.x,b.y,p.x,p.y)<(b.r+p.r)*(b.r+p.r)){ takeDamage(b.dmg,'projectile'); b.life=0; S.flash=.2; S.shake=.18; effect('effect.shield_hit',p.x,p.y,70,.2); audio.hit() } continue } for(const e of S.enemies){ if(b.pierce<=0||e.hp<=0) continue; if(d2(b.x,b.y,e.x,e.y)<(b.r+e.r)*(b.r+e.r)){ e.hp-=b.dmg; b.pierce--; e.slow=Math.max(e.slow,b.slow); number(e.x,e.y,Math.ceil(b.dmg),b.over?'#fb7185':'#e0f2fe'); particles(b.x,b.y,b.rocket?'#f97316':b.over?'#fb7185':'#67e8f9',b.rocket?16:4); if(b.rocket){ effect('effect.explosion_small',b.x,b.y,76,.25); for(const x of S.enemies) if(x!==e&&x.hp>0&&d2(x.x,x.y,b.x,b.y)<75*75) x.hp-=b.dmg*.45; S.shake=.12 } if(e.hp<=0) kill(e) } } } compact(S.bullets,b=>b.life>0&&b.pierce>0&&b.x>-140&&b.x<S.W+140&&b.y>-140&&b.y<S.H+140); compact(S.enemies,e=>e.hp>0); if(S.boss?.hp<=0) S.boss=null }
+  function kill(e){ S.kills++; addCombo(); addMissionProgress('kills',1); if(e.type==='elite') addMissionProgress('elite',1); const rare=e.type==='boss'||e.type==='elite'; S.orbs.push({x:e.x,y:e.y,r:rare?9:6,v:rare?24:6,img:rare?'item.xp_rare':'item.xp'}); if(e.type==='boss'){ S.boss=null; S.bossKills=(S.bossKills||0)+1; S.xp+=60; toast('Boss destroyed','Rare upgrade unlocked'); effect('effect.explosion_big',e.x,e.y,e.r*3.2,.55); if(!(S.modeCfg||modeCfg(S.mode)).bossRush || S.bossKills < ((S.modeCfg||modeCfg(S.mode)).bossGoal||999)) showUpgrade(true) } else effect('effect.explosion_small',e.x,e.y,e.r*2.2,.18); particles(e.x,e.y,rare?'#c084fc':'#38bdf8',rare?22:12) }
+  function gainXp(v, trackMission=true){ v = Math.ceil(v * (S.p.zoneXp||1) * (S.p.xpMul||1) * eventXpMul() * comboMult()); S.runStats.xp += v; if(trackMission) addMissionProgress('xp', v); S.xp += v; while(S.xp>=S.nextXp){ S.xp-=S.nextXp; S.level++; S.nextXp=Math.floor(S.nextXp*1.42+28+(S.level>8?S.level*8:0)); audio.level(); effect('effect.level_up',S.p.x,S.p.y,140,.45); showUpgrade(false) } }
+  function showUpgrade(rare){ setPause(true,'upgrade'); ui.upgradeTitle.textContent=rare?'Редкая модернизация':'Модернизация корабля'; ui.upgradeText.textContent=rare?'Босс уничтожен. Выбери усиление.':'Выбери один апгрейд'; ui.upgradeGrid.innerHTML=''; [...UPG].sort(()=>Math.random()-.5).slice(0,3).forEach(u=>{ const c=document.createElement('div'); c.className='card'; c.innerHTML=iconHTML(u[0],'✨')+`<h3>${u[1]}</h3><p>${u[2]}</p>`; c.onclick=()=>{ u[3](S.p); updateBuild(); show(ui.upgradeModal,false); S.pause=false; S.reason=null; S.last=performance.now() }; ui.upgradeGrid.appendChild(c) }); show(ui.upgradeModal,true) }
+  function updateOrbs(dt){ const p=S.p; for(const o of S.orbs){ const dd=Math.hypot(o.x-p.x,o.y-p.y); if(dd<p.magnet+(p.zoneMagnet||0)){ const a=Math.atan2(p.y-o.y,p.x-o.x), sp=320+((p.magnet+(p.zoneMagnet||0))-dd)*6; o.x+=Math.cos(a)*sp*dt; o.y+=Math.sin(a)*sp*dt } if(dd<p.r+o.r+5){ o.dead=true; gainXp(o.v); effect('effect.level_up',o.x,o.y,42,.14); audio.xp() } } compact(S.orbs,o=>!o.dead) }
+  function effect(key,x,y,size,life){ if(S.fx.length >= LIMITS.fx) return; S.fx.push({kind:'img',key,x,y,size,life,max:life,a:rnd(0,TAU),spin:rnd(-3,3)}) }
+  function particles(x,y,c,n=8){ if(S.fx.length >= LIMITS.fx) return; n = Math.min(n, Math.max(0, LIMITS.fx - S.fx.length)); for(let i=0;i<n;i++){ const a=rnd(0,TAU), sp=rnd(50,230); S.fx.push({kind:'dot',x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:rnd(2,4),c,life:rnd(.25,.7),max:.7}) } }
+  function number(x,y,t,c){ if(S.dmg.length >= LIMITS.dmg) S.dmg.shift(); S.dmg.push({x,y,t,c,life:.55,max:.55}) }
+  function updateFx(dt){ for(const f of S.fx){ if(f.kind==='dot'){ f.x+=f.vx*dt; f.y+=f.vy*dt; f.vx*=.92; f.vy*=.92 } else f.a+=f.spin*dt; f.life-=dt } for(const n of S.dmg){ n.y-=42*dt; n.life-=dt } compact(S.fx,f=>f.life>0); compact(S.dmg,n=>n.life>0) }
+
+  function render(){ const sx=S.shake?rnd(-10,10)*S.shake*3:0, sy=S.shake?rnd(-10,10)*S.shake*3:0; ctx.setTransform(S.DPR,0,0,S.DPR,sx*S.DPR,sy*S.DPR); ctx.clearRect(-24,-24,S.W+48,S.H+48); for(const s of S.stars){ ctx.globalAlpha=s.a; circle(s.x,s.y,s.r,'#e0f2fe') } ctx.globalAlpha=1; drawBiomeOverlay(); S.orbs.forEach(drawOrb); drawSafeZone(); drawRepairField(); S.bullets.forEach(drawBullet); S.enemies.forEach(drawEnemy); drawShip(); S.fx.forEach(drawFx); drawNumbers(); if(S.flash>0){ ctx.fillStyle=`rgba(239,68,68,${S.flash*.35})`; ctx.fillRect(-24,-24,S.W+48,S.H+48) } ctx.setTransform(S.DPR,0,0,S.DPR,0,0) }
+  function circle(x,y,r,c){ ctx.beginPath(); ctx.arc(x,y,r,0,TAU); ctx.fillStyle=c; ctx.fill() }
+  function poly(points,c){ ctx.beginPath(); points.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.closePath(); ctx.fillStyle=c; ctx.fill() }
+  function fallbackShip(p,a){ ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(a); circle(0,0,31,p.boosting?'rgba(251,146,60,.18)':p.overing?'rgba(251,113,133,.18)':'rgba(56,189,248,.12)'); poly([[31,0],[-18,-18],[-10,0],[-18,18]],'#e2e8f0'); poly([[12,0],[-10,-8],[-5,0],[-10,8]],'#0f172a'); ctx.restore() }
+
+  function drawBiomeOverlay(){ if(!S?.biome?.fog) return; ctx.fillStyle=`rgba(15,23,42,${S.biome.fog})`; ctx.fillRect(0,0,S.W,S.H) }
+  function drawRepairField(){ const f=S?.p?.repairField; if(!f) return; ctx.save(); ctx.globalAlpha=Math.max(.12,Math.min(.4,f.t/5)); ctx.strokeStyle='#22c55e'; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,TAU); ctx.stroke(); ctx.globalAlpha=.08; circle(f.x,f.y,f.r,'#22c55e'); ctx.restore() }
+  function drawSafeZone(){
+    const z = S.safe
+    if (!z?.active) return
+
+    const pulse = .5 + Math.sin(S.time * 7) * .5
+    const left = Math.max(0, Math.ceil(z.t))
+    const inside = d2(S.p.x, S.p.y, z.x, z.y) < z.r * z.r
+
+    if (!inside) drawSafeZonePointer(z)
+
+    ctx.save()
+    ctx.translate(z.x, z.y)
+
+    const grad = ctx.createRadialGradient(0, 0, z.r * .15, 0, 0, z.r)
+    grad.addColorStop(0, 'rgba(56,189,248,.12)')
+    grad.addColorStop(.72, 'rgba(56,189,248,.055)')
+    grad.addColorStop(1, 'rgba(56,189,248,0)')
+    ctx.fillStyle = grad
+    ctx.beginPath()
+    ctx.arc(0, 0, z.r, 0, TAU)
+    ctx.fill()
+
+    ctx.lineWidth = 3
+    ctx.strokeStyle = `rgba(125,211,252,${.45 + pulse * .25})`
+    ctx.setLineDash([12, 10])
+    ctx.lineDashOffset = -S.time * 34
+    ctx.beginPath()
+    ctx.arc(0, 0, z.r, 0, TAU)
+    ctx.stroke()
+
+    ctx.setLineDash([])
+    ctx.font = '900 28px system-ui'
+    ctx.textAlign = 'center'
+    const info = zoneInfo(z.type)
+    ctx.fillStyle = 'rgba(224,242,254,.95)'
+    ctx.shadowColor = 'rgba(56,189,248,.9)'
+    ctx.shadowBlur = 18
+    ctx.fillText(left, 0, 10)
+
+    ctx.font = '800 11px system-ui'
+    ctx.shadowBlur = 8
+    ctx.fillText(inside ? info[2].toUpperCase() : info[0], 0, 32)
+    ctx.restore()
+  }
+
+  function drawSafeZonePointer(z){
+    const a = Math.atan2(z.y - S.p.y, z.x - S.p.x)
+    const dist = Math.hypot(z.x - S.p.x, z.y - S.p.y)
+    const x = S.p.x + Math.cos(a) * 58
+    const y = S.p.y + Math.sin(a) * 58
+
+    ctx.save()
+    ctx.translate(x, y)
+    ctx.rotate(a)
+    ctx.globalAlpha = clamp(dist / 360, .35, .95)
+    ctx.fillStyle = 'rgba(125,211,252,.9)'
+    ctx.shadowColor = 'rgba(56,189,248,.9)'
+    ctx.shadowBlur = 12
+    ctx.beginPath()
+    ctx.moveTo(18, 0)
+    ctx.lineTo(-10, -9)
+    ctx.lineTo(-5, 0)
+    ctx.lineTo(-10, 9)
+    ctx.closePath()
+    ctx.fill()
+    ctx.restore()
+    ctx.globalAlpha = 1
+  }
+
+  function drawShip(){ const p=S.p,a=aim(); const size=p.r*4.7; if(p.boosting && p.phaseDamageTaken < 1){ ctx.globalAlpha=.22; circle(p.x,p.y,p.r*2.25,'#c084fc'); ctx.globalAlpha=1 } if(p.shockRadius){ ctx.globalAlpha=.08; circle(p.x,p.y,p.r*2.2,'#60a5fa'); ctx.globalAlpha=1 } if(!drawImg(p.img,p.x,p.y,size,size,a+Math.PI/2)){ fallbackShip(p,a) } const flame=p.boosting?68:36; if(p.boosting && drawImg('effect.boost_flame',p.x-Math.cos(a)*34,p.y-Math.sin(a)*34,flame,flame,a+Math.PI/2,.9)) return; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(a); ctx.globalAlpha=p.boosting?.95:.68; poly([[-22,-7],[-22-(p.boosting?56:28),0],[-22,7]],'#f97316'); ctx.globalAlpha=1; ctx.restore() }
+  function drawEnemy(e){ const size=e.r*(e.type==='boss'?3.1:2.9); if(!drawImg(e.img,e.x,e.y,size,size,e.ang)){ ctx.save(); ctx.translate(e.x,e.y); ctx.rotate(e.ang); circle(0,0,e.r+6,'rgba(0,0,0,.25)'); poly([[e.r+10,0],[-e.r,-e.r*.85],[-e.r*.55,0],[-e.r,e.r*.85]],e.c||'#94a3b8'); ctx.restore() } const w=e.r*2.1, r=clamp(e.hp/e.maxHp,0,1); ctx.fillStyle='rgba(0,0,0,.45)'; ctx.fillRect(e.x-w/2,e.y-e.r-13,w,4); ctx.fillStyle=e.type==='boss'?'#f97316':e.c; ctx.fillRect(e.x-w/2,e.y-e.r-13,w*r,4) }
+  function drawBullet(b){ const key=b.enemy?'effect.laser_red':b.rocket?'effect.plasma_beam':b.over?'effect.laser_red':'effect.laser_cyan'; if(drawImg(key,b.x,b.y,b.rocket?42:32,b.rocket?18:12,b.a)) return; ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.a); ctx.fillStyle=b.enemy?'#f97316':b.rocket?'#facc15':b.over?'#fb7185':'#67e8f9'; ctx.shadowColor=ctx.fillStyle; ctx.shadowBlur=14; ctx.fillRect(-10,-2,26,4); ctx.restore(); ctx.shadowBlur=0 }
+  function drawOrb(o){ if(drawImg(o.img,o.x,o.y,o.r*4,o.r*4,0)) return; circle(o.x,o.y,o.r+7,'rgba(56,189,248,.16)'); circle(o.x,o.y,o.r,o.img==='item.xp_rare'?'#c084fc':'#38bdf8') }
+  function drawFx(f){ const a=clamp(f.life/f.max,0,1); ctx.globalAlpha=a; if(f.kind==='img') drawImg(f.key,f.x,f.y,f.size,f.size,f.a,a); else circle(f.x,f.y,f.r,f.c); ctx.globalAlpha=1 }
+  function drawNumbers(){ ctx.font='700 14px system-ui'; ctx.textAlign='center'; for(const n of S.dmg){ ctx.globalAlpha=clamp(n.life/n.max,0,1); ctx.fillStyle=n.c; ctx.fillText(n.t,n.x,n.y) } ctx.globalAlpha=1 }
+
+  function updateUi(force=false){ if(!S) { ui.scrap.textContent=meta.scrap; ui.best.textContent=fmt(meta.best); return } if(!force && (S.uiTick-=1)>0) return; S.uiTick=5; const p=S.p; ui.time.textContent=fmt(S.time); ui.hp.textContent=Math.max(0,Math.ceil(p.hp)); ui.boost.textContent=Math.ceil(p.boost/p.maxBoost*100); ui.fire.textContent=Math.ceil(p.fire/p.maxFire*100); ui.level.textContent=S.level; ui.kills.textContent=S.kills; ui.combo.textContent='x'+comboMult().toFixed(1)+' · '+(S.combo?.count||0); ui.comboPill.classList.toggle('hot',(S.combo?.count||0)>=8); ui.mission.textContent=missionText(); ui.eventBadge.classList.toggle('show',!!S.event?.active); if(S.event?.active){ const ev=EVENTS[S.event.type]; ui.eventBadge.textContent=`${S.biome?.icon||''} ${S.biome?.name||''} · ${ev.icon} ${ev.name} · ${Math.ceil(S.event.t)}s`; } ui.scrap.textContent=meta.scrap; ui.best.textContent=fmt(meta.best); ui.xpBar.style.width=clamp(S.xp/S.nextXp,0,1)*100+'%'; ui.boostBar.style.width=clamp(p.boost/p.maxBoost,0,1)*100+'%'; ui.fireBar.style.width=clamp(p.fire/p.maxFire,0,1)*100+'%'; ui.build.textContent=(S.biome?.icon||'')+' '+p.build; if(ui.ability){ const cd=p.abilityCd||0; ui.ability.textContent=cd>0?Math.ceil(cd)+'s':p.ability.name; ui.abilityBar.style.width=(cd>0?clamp(1-cd/(p.ability?.cd||1),0,1):1)*100+'%' } if(S.boss){ show(ui.boss,true); ui.bossName.textContent=S.boss.name; const r=clamp(S.boss.hp/S.boss.maxHp,0,1); ui.bossHp.textContent=Math.ceil(r*100)+'%'; ui.bossBar.style.width=r*100+'%' } else show(ui.boss,false) }
+  function end(won){
+    if(!S.run) return
+    S.run=false; S.pause=false
+    const cfg=S.modeCfg||modeCfg(S.mode), bossKills=S.bossKills||0, comboBonus=Math.floor((S.runStats?.maxCombo||0)*.8)
+    const earned=Math.floor((S.kills*.7+S.level*12+S.time*.25+bossKills*65+comboBonus+(won?260:0))*(S.p.scrapMul||1)*(S.biome?.scrap||1)*(cfg.scrapMul||1))
+    meta.scrap+=earned; meta.best=Math.max(meta.best,S.time); meta.stats.runs++; meta.stats.kills+=S.kills; meta.stats.bossKills+=bossKills; meta.stats.bestLevel=Math.max(meta.stats.bestLevel,S.level); meta.stats.totalTime+=S.time; if(won) meta.stats.wins++
+    const unlocked=checkAchievements()
+    save(); show(ui.boss,false); show(ui.upgradeModal,false); show(ui.pauseModal,false)
+    ui.endTitle.textContent=won?'Победа в режиме!':'Корабль уничтожен'
+    ui.endText.innerHTML=`<div class="result-grid"><div class="result-card"><b>${fmt(S.time)}</b><span>Время</span></div><div class="result-card"><b>${S.kills}</b><span>Уничтожено</span></div><div class="result-card"><b>${S.level}</b><span>Уровень</span></div><div class="result-card"><b>${S.runStats.maxCombo}</b><span>Max combo</span></div></div><div class="build-badge">${S.p.build}</div><br>Карта: <b>${S.biome?.name||'Deep Space'}</b> · Режим: <b>${cfg.icon} ${cfg.name}</b><br>Боссов уничтожено: <b>${bossKills}</b><br>Scrap за забег: <b>+${earned}</b><br>Миссии выполнено: <b>${S.runStats.missions}</b> · Событий пережито: <b>${S.runStats.events}</b><br>XP собрано: <b>${S.runStats.xp}</b><br>Всего Scrap: <b>${meta.scrap}</b><br>Рекорд: <b>${fmt(meta.best)}</b>${unlocked.length?`<div class="unlock-list">Открыто: <b>${unlocked.join(', ')}</b></div>`:''}`
+    show(ui.endModal,true); updateUi(true); renderMenuStats()
+  }
+
+function returnToMainMenu(){ if(S){ S.run=false; S.pause=false; cancelAnimationFrame(S.raf); S=null } show(ui.pauseModal,false); show(ui.endModal,false); show(ui.upgradeModal,false); show(ui.tutorialModal,false); show(ui.modeModal,false); show(ui.chooseShipModal,false); show(ui.shopModal,false); show(ui.achievementsModal,false); show(ui.settingsModal,false); show(ui.boss,false); renderMenuStats(); show(ui.startModal,true); updateUi(true) }
+  function checkAchievements(){ const unlocked=[]; for(const a of ACHIEVEMENTS){ if(meta.achievements[a.id]) continue; if(a.value()>=a.goal){ meta.achievements[a.id]=Date.now(); meta.scrap+=a.reward; unlocked.push(`${a.icon} ${a.name} +${a.reward} Scrap`) } } return unlocked }
+  function renderMenuStats(){ const opened=ACHIEVEMENTS.filter(a=>meta.achievements[a.id]).length; ui.menuBest.textContent=fmt(meta.best|0); ui.menuRuns.textContent=meta.stats.runs; ui.menuKills.textContent=meta.stats.kills; ui.menuAchievements.textContent=`${opened}/${ACHIEVEMENTS.length}` }
+  function renderAchievements(){ renderMenuStats(); ui.achBest.textContent=fmt(meta.best|0); ui.achRuns.textContent=meta.stats.runs; ui.achKills.textContent=meta.stats.kills; ui.achScrap.textContent=meta.scrap; ui.achievementsGrid.innerHTML=''; for(const a of ACHIEVEMENTS){ const v=Math.min(a.value(),a.goal), done=!!meta.achievements[a.id], pct=clamp(v/a.goal,0,1)*100; const c=document.createElement('div'); c.className='achievement'+(done?'':' locked'); c.innerHTML=`<div class="achievement-icon">${done?a.icon:'🔒'}</div><div style="flex:1"><h3>${a.name}</h3><p>${a.desc}</p><div class="mini-bar"><i style="width:${pct}%"></i></div><p class="muted" style="margin-top:6px">${Math.floor(v)} / ${a.goal}</p><span class="reward">+${a.reward} Scrap</span></div>`; ui.achievementsGrid.appendChild(c) } }
+  function renderShips(startOnSelect=false){
+    ui.shipGrid.innerHTML=''
+    renderMenuStats()
+    SHIPS.forEach(s=>{
+      const selected = meta.ship===s[0]
+      const c=document.createElement('div')
+      c.className='card'+(selected?' active':'')
+      c.innerHTML=iconHTML(s[3],s[0]) + `<h3>${s[1]}</h3><p>${s[2]}</p><div class="mission-meta"><span class="mission-tag">Passive</span><span class="mission-tag">Skill: ${ABILITY[s[0]]?.name||'Skill'} Lv.${abilityLevel(s[0])} / E</span><span class="mission-tag">${s[0].toUpperCase()}</span></div>`
+      c.onclick=()=>{ meta.ship=s[0]; save(); renderShips(false) }
+      ui.shipGrid.appendChild(c)
+    })
+    const ship = SHIPS.find(x=>x[0]===meta.ship)
+    if (ui.selectedShipInfo && ship) ui.selectedShipInfo.innerHTML = `Выбран: <b>${ship[1]}</b> · ${ABILITY[meta.ship]?.name||'Skill'} Lv.${abilityLevel(meta.ship)}`
+  }
+  function renderShop(focusShip=null){
+    ui.shopScrap.textContent=meta.scrap
+    ui.shopGrid.innerHTML=''
+    if(!focusShip) SHOP.forEach(s=>{
+      const [id,name,desc,price,max]=s, lvl=meta.shop[id], cost=price*(lvl+1)
+      const c=document.createElement('div')
+      c.className='card'+(lvl>=max?' locked':'')
+      c.innerHTML=`<h3>${name}</h3><p>${desc}</p><p class="muted">Уровень: ${lvl}/${max} · Цена: ${lvl>=max?'MAX':cost+' Scrap'}</p>`
+      c.onclick=()=>{ if(lvl>=max||meta.scrap<cost) return; meta.scrap-=cost; meta.shop[id]++; save(); renderShop(); updateUi(true) }
+      ui.shopGrid.appendChild(c)
+    })
+
+    const title=document.createElement('div')
+    title.style.gridColumn='1/-1'
+    title.innerHTML=`<div class="section-title"><h3>${focusShip?'Прокачка выбранного корабля':'Спецвозможности кораблей'}</h3><span>Прокачка активного навыка на E</span></div>`
+    ui.shopGrid.appendChild(title)
+
+    const shipsToRender = focusShip ? SHIPS.filter(x=>x[0]===focusShip) : SHIPS
+    shipsToRender.forEach(s=>{
+      const ship=s[0], lvl=abilityLevel(ship), cost=abilityCost(ship), maxed=lvl>=ABILITY_MAX
+      const c=document.createElement('div')
+      c.className='card'+(ship===meta.ship?' active':'')+(maxed?' locked':'')
+      c.innerHTML=iconHTML(s[3],s[1]) + `<h3>${s[1]} · ${ABILITY[ship]?.name||'Skill'}</h3><p>${ABILITY[ship]?.text||''}</p><p class="muted">${abilityUpgradeText(ship,lvl)}</p><p class="muted">Цена: ${maxed?'MAX':cost+' Scrap'}</p>`
+      c.onclick=()=>{
+        if(maxed || meta.scrap<cost) return
+        meta.scrap-=cost
+        meta.abilityShop[ship]=lvl+1
+        save()
+        renderShop()
+        renderShips(false)
+        updateUi(true)
+        toast('Skill upgraded', `${s[1]} · ${ABILITY[ship]?.name||'Skill'} Lv.${lvl+1}`)
+      }
+      ui.shopGrid.appendChild(c)
+    })
+  }
+
+
+  function openModeSelect(){
+    renderModes()
+    show(ui.startModal,false); show(ui.modeModal,true)
+  }
+  function selectMode(id){
+    pendingMode = GAME_MODES[id] ? id : 'normal'
+    show(ui.modeModal,false)
+    renderShips(false)
+    show(ui.chooseShipModal,true)
+  }
+  function renderModes(){
+    ui.modeGrid.innerHTML=''
+    for (const [id,m] of Object.entries(GAME_MODES)) {
+      const c=document.createElement('div')
+      c.className='card mode-card'
+      c.innerHTML=`<div class="icon">${m.icon}</div><h3>${m.name}</h3><p>${m.desc}</p><div class="mission-meta"><span class="mission-tag">${m.endless?'Endless':m.winTime?fmt(m.winTime):m.bossGoal?m.bossGoal+' bosses':m.missionGoal?m.missionGoal+' missions':'Special'}</span><span class="mission-tag">Scrap x${m.scrapMul}</span></div><span class="mode-reward">${id==='hardcore'?'High risk':id==='boss'?'Boss rewards':id==='free'?'Infinite record':'Balanced'}</span>`
+      c.onclick=()=>selectMode(id)
+      ui.modeGrid.appendChild(c)
+    }
+  }
+
+  function renderSettings(){ ui.musicSwitch.classList.toggle('active', !!meta.settings.music); ui.tutorialSwitch.classList.toggle('active', !!meta.settings.tutorial) }
+  function openSettings(from){
+    ui.settingsModal.dataset.from = from
+    show(ui.startModal,false); show(ui.modeModal,false); show(ui.chooseShipModal,false); show(ui.shopModal,false); show(ui.achievementsModal,false); show(ui.pauseModal,false); show(ui.endModal,false)
+    renderSettings()
+    show(ui.settingsModal,true)
+  }
+  function closeSettings(){
+    const from = ui.settingsModal.dataset.from || 'start'
+    show(ui.settingsModal,false)
+    if (from === 'pause') show(ui.pauseModal,true)
+    else if (from === 'end') show(ui.endModal,true)
+    else show(ui.startModal,true)
+  }
+  function setMusic(on){
+    meta.settings.music = !!on
+    save()
+    renderSettings()
+    meta.settings.music ? audio.start() : audio.stop()
+  }
+
+  function setTutorial(on){
+    meta.settings.tutorial = !!on
+    save()
+    renderSettings()
+    if (S?.tutorial) {
+      S.tutorial.enabled = !!(meta.settings.tutorial && !meta.tutorialDone)
+      if (!S.tutorial.enabled && S.reason === 'tutorial') closeTutorialModal(false)
+    }
+  }
+
+  ui.startBtn.onclick=openModeSelect
+  ui.challengeBtn.onclick=()=>selectMode('normal')
+  ui.modeBackBtn.onclick=()=>{ show(ui.modeModal,false); show(ui.startModal,true); renderMenuStats() }
+  ui.chooseShipPlayBtn.onclick=()=>reset()
+  ui.chooseShipUpgradeBtn.onclick=()=>{ ui.shopModal.dataset.from='chooseShip'; show(ui.chooseShipModal,false); renderShop(meta.ship); show(ui.shopModal,true) }
+  ui.chooseShipBackBtn.onclick=()=>{ show(ui.chooseShipModal,false); openModeSelect() }
+  ui.restartBtn.onclick=()=>{ show(ui.endModal,false); renderShips(false); show(ui.chooseShipModal,true) }
+  ui.resumeBtn.onclick=()=>setPause(false,'manual'); ui.pauseHomeBtn.onclick=returnToMainMenu; ui.endHomeBtn.onclick=returnToMainMenu
+  ui.shopBtn.onclick=()=>{ ui.shopModal.dataset.from='start'; show(ui.startModal,false); show(ui.chooseShipModal,false); renderShop(); show(ui.shopModal,true) }
+  ui.achievementsBtn.onclick=()=>{ show(ui.startModal,false); show(ui.chooseShipModal,false); renderAchievements(); show(ui.achievementsModal,true) }
+  ui.achievementsBackBtn.onclick=()=>{ show(ui.achievementsModal,false); show(ui.startModal,true); renderShips() }
+  ui.settingsBtn.onclick=()=>openSettings('start')
+  ui.pauseSettingsBtn.onclick=()=>openSettings('pause')
+  ui.endSettingsBtn.onclick=()=>openSettings('end')
+  ui.settingsBackBtn.onclick=closeSettings
+  ui.musicSwitch.onclick=()=>setMusic(!meta.settings.music)
+  ui.tutorialSwitch.onclick=()=>setTutorial(!meta.settings.tutorial)
+  ui.tutorialOkBtn.onclick=()=>closeTutorialModal(true)
+  ui.endShopBtn.onclick=()=>{ ui.shopModal.dataset.from='end'; show(ui.endModal,false); renderShop(); show(ui.shopModal,true) }
+  ui.endAchievementsBtn.onclick=()=>{ show(ui.endModal,false); renderAchievements(); show(ui.achievementsModal,true) }
+  ui.backBtn.onclick=()=>{ const from=ui.shopModal.dataset.from||'start'; show(ui.shopModal,false); if(from==='chooseShip'){ renderShips(false); show(ui.chooseShipModal,true) } else if(from==='end'){ show(ui.endModal,true) } else { show(ui.startModal,true); renderMenuStats() } }
+  document.addEventListener('click', audio.unlock, { once:true })
+  document.addEventListener('touchstart', audio.unlock, { once:true, passive:true })
+  addEventListener('resize',resize)
+  addEventListener('keydown',e=>{ keys[e.code]=true; if(e.code==='KeyE'){ useAbility(); e.preventDefault() } if(e.code==='KeyP'||e.code==='Escape'){ if(!['upgrade','tutorial'].includes(S?.reason)) setPause(!S?.pause,'manual'); e.preventDefault() } if(['KeyW','KeyA','KeyS','KeyD','KeyI','KeyJ','KeyK','KeyL','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','ShiftLeft','ShiftRight','KeyE'].includes(e.code)) e.preventDefault() })
+  addEventListener('keyup',e=>{ keys[e.code]=false })
+  addEventListener('mousemove',e=>{ mouse.x=e.clientX; mouse.y=e.clientY })
+  addEventListener('contextmenu',e=>{ e.preventDefault(); useAbility() })
+  addEventListener('touchmove',e=>{ const t=e.touches[0]; if(t){ mouse.x=t.clientX; mouse.y=t.clientY } },{passive:true})
+
+  Synapse.on('game:start', reset)
+  resize(); mouse.x=innerWidth/2+150; mouse.y=innerHeight/2; renderMenuStats(); renderSettings(); updateUi(true); requestAnimationFrame(function idle(){ if(!S) { ctx.clearRect(0,0,innerWidth,innerHeight); ctx.setTransform(Math.min(devicePixelRatio||1,2),0,0,Math.min(devicePixelRatio||1,2),0,0); for(const s of createStars(80,innerWidth,innerHeight)) { ctx.globalAlpha=s.a; circle(s.x,s.y,s.r,'#e0f2fe') } ctx.globalAlpha=1; requestAnimationFrame(idle) } })
+})()
+</script>
+</body>
+</html>
