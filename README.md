@@ -1,88 +1,90 @@
 # 🚀 Space Ship Survivor — Assets Edition
 
-**Space Ship Survivor** — браузерная 2D arcade/survivor-игра на чистом **HTML + CSS + JavaScript Canvas**.  
-Игрок управляет космическим кораблём, выживает против волн врагов, собирает XP, открывает достижения, прокачивает корабли и усиливает ангар после каждого забега.
+**Space Ship Survivor** — браузерная 2D arcade/survivor-игра на чистом **HTML + CSS + JavaScript Canvas**.
+
+Игрок управляет космическим кораблём, выживает против волн врагов, собирает опыт, получает Scrap, открывает достижения, прокачивает корабли и усиливает ангар после каждого забега.
 
 Проект сделан как **MVP survivor-игры**, которую можно запускать прямо в браузере без сборщиков, фреймворков и серверной части.
 
 ---
 
-## 🎮 Gameplay
+## 🎮 Игровой процесс
 
-Игрок появляется на космической арене и должен выживать как можно дольше.  
+Игрок появляется на космической арене и должен продержаться как можно дольше.
+
 Во время забега нужно:
 
 - уничтожать астероиды, дронов и боссов;
-- собирать XP и Scrap;
+- собирать опыт и Scrap;
 - повышать уровень корабля;
-- выбирать временные апгрейды;
+- выбирать временные улучшения;
 - выполнять миссии;
 - использовать активный навык корабля;
 - выживать до финального времени или играть в бесконечном режиме.
 
 ---
 
-## ✨ Features
+## ✨ Возможности
 
-- ✅ Полностью браузерная игра на Canvas
-- ✅ Один основной `index.html`
-- ✅ Несколько игровых режимов
-- ✅ Выбор корабля перед стартом
-- ✅ Уникальные пассивные бонусы кораблей
-- ✅ Активный навык на клавишу `E`
-- ✅ Прокачка навыков кораблей
-- ✅ Ангар постоянных улучшений
-- ✅ XP, уровни, Scrap и достижения
-- ✅ Боссы с отдельной полосой здоровья
-- ✅ Миссии внутри забега
-- ✅ Safe Zone и события на карте
-- ✅ Настройки музыки и обучения
-- ✅ Сохранение прогресса через `localStorage`
-- ✅ Адаптивный HUD для desktop и mobile
-- ✅ Поддержка внешних PNG assets
-- ✅ Фоновая музыка через `music/background.mp3`
+- Полностью браузерная игра на Canvas
+- Один основной файл `index.html`
+- Несколько игровых режимов
+- Выбор корабля перед стартом
+- Уникальные пассивные бонусы кораблей
+- Активный навык на клавишу `E`
+- Прокачка навыков кораблей
+- Ангар постоянных улучшений
+- Опыт, уровни, Scrap и достижения
+- Боссы с отдельной полосой здоровья
+- Миссии внутри забега
+- Безопасные зоны и случайные события на карте
+- Настройки музыки и обучения
+- Сохранение прогресса через `localStorage`
+- Адаптивный интерфейс для компьютера и мобильных устройств
+- Поддержка внешних PNG-ассетов
+- Фоновая музыка через `music/background.mp3`
 
 ---
 
-## 🕹️ Controls
+## 🕹️ Управление
 
-| Action | Key |
+| Действие | Клавиша |
 |---|---|
-| Move | `WASD` / Arrow Keys |
-| Aim | Mouse |
-| Keyboard Aim | `IJKL` |
-| Boost | `Space` |
-| Fire Mode / Overdrive | `Shift` |
-| Active Skill | `E` |
-| Pause | `Esc` / `P` |
+| Движение | `WASD` / стрелки |
+| Прицеливание | мышь |
+| Прицеливание с клавиатуры | `IJKL` |
+| Форсаж | `Space` |
+| Усиленная стрельба | `Shift` |
+| Активный навык | `E` |
+| Пауза | `Esc` / `P` |
 
 ---
 
-## 🚀 How to Run
+## 🚀 Запуск проекта
 
-### Option 1 — Open directly
+### Вариант 1 — открыть напрямую
 
-You can open `index.html` directly in the browser.
+Можно открыть файл `index.html` прямо в браузере.
 
 ```bash
 index.html
 ```
 
-### Option 2 — Run with local server
+### Вариант 2 — запустить через локальный сервер
 
-Recommended for assets and audio loading:
+Рекомендуется для корректной загрузки ассетов и музыки.
 
 ```bash
 npx serve .
 ```
 
-or
+или
 
 ```bash
 python -m http.server 8080
 ```
 
-Then open:
+После запуска открой в браузере:
 
 ```bash
 http://localhost:8080
@@ -90,7 +92,7 @@ http://localhost:8080
 
 ---
 
-## 📁 Project Structure
+## 📁 Структура проекта
 
 ```txt
 space-ship-survivor/
@@ -148,68 +150,68 @@ space-ship-survivor/
 
 ---
 
-## 🚀 Ships
+## 🚀 Корабли
 
-| Ship | Role | Description |
+| Корабль | Роль | Описание |
 |---|---|---|
-| Scout | Speed / Combo | Fast ship with dodge and longer combo window |
-| Tank | Defense | High shield, lower damage taken, shockwave mechanics |
-| Engineer | Support | Strong magnet, regeneration and longer zone effects |
-| Gunner | Damage | Double laser, faster fire rate and stronger fire energy |
-| Phantom | Mobility | Strong boost and reduced damage while boosting |
+| Scout | Скорость и комбо | Быстрый корабль с уклонением и увеличенным окном комбо |
+| Tank | Защита | Прочный корабль с большим щитом и сниженным входящим уроном |
+| Engineer | Поддержка | Корабль с усиленным магнитом, регенерацией и улучшенными зонами |
+| Gunner | Урон | Боевой корабль с двойным лазером и высокой скорострельностью |
+| Phantom | Манёвренность | Корабль с мощным форсажем и сниженным уроном во время ускорения |
 
-Each ship has:
+У каждого корабля есть:
 
-- passive bonuses;
-- unique playstyle;
-- active skill;
-- separate skill upgrade level.
+- пассивные бонусы;
+- собственный стиль игры;
+- активный навык;
+- отдельный уровень прокачки навыка.
 
 ---
 
-## 🧠 Active Skills
+## 🧠 Активные навыки
 
-| Ship | Skill | Effect |
+| Корабль | Навык | Эффект |
 |---|---|---|
-| Scout | Dash | Fast dash through enemies |
-| Tank | Shockwave | Pushes and damages enemies around the ship |
-| Engineer | Repair Field | Creates a healing field |
-| Gunner | Overload | Temporarily increases fire power |
-| Phantom | Ghost Mode | Allows safer movement through enemies |
+| Scout | Dash | Быстрый рывок сквозь врагов |
+| Tank | Shockwave | Отталкивает и наносит урон врагам вокруг корабля |
+| Engineer | Repair Field | Создаёт ремонтную зону для восстановления щита |
+| Gunner | Overload | Временно усиливает огневую мощь |
+| Phantom | Ghost Mode | Позволяет безопаснее проходить через врагов |
 
-Skills can be upgraded in the hangar using Scrap.
+Навыки можно улучшать в ангаре за Scrap.
 
 ---
 
-## 🎯 Game Modes
+## 🎯 Игровые режимы
 
-| Mode | Description |
+| Режим | Описание |
 |---|---|
-| Classic | Survive 10 minutes |
-| Free Play | Endless survival mode |
-| Boss Rush | Fight a chain of bosses |
-| Mission Run | Complete a set of missions |
-| Hardcore | Harder enemies, higher Scrap reward |
-| Daily Challenge | More intense challenge-style run |
+| Классика | Нужно выжить 10 минут |
+| Свободная игра | Бесконечный режим выживания |
+| Boss Rush | Серия сражений с боссами |
+| Миссионный забег | Победа через выполнение миссий |
+| Hardcore | Более опасные враги и повышенная награда |
+| Daily Challenge | Усиленный испытательный забег |
 
 ---
 
-## 🏆 Progression
+## 🏆 Прогресс
 
-The game stores progress in the browser using `localStorage`.
+Игра сохраняет прогресс в браузере через `localStorage`.
 
-Saved data includes:
+Сохраняются:
 
-- total Scrap;
-- best survival time;
-- selected ship;
-- permanent hangar upgrades;
-- skill upgrade levels;
-- achievements;
-- run statistics;
-- settings.
+- количество Scrap;
+- лучшее время выживания;
+- выбранный корабль;
+- постоянные улучшения ангара;
+- уровни навыков кораблей;
+- достижения;
+- статистика забегов;
+- настройки.
 
-Storage key:
+Ключ сохранения:
 
 ```js
 sss_assets_edition_v1
@@ -217,71 +219,73 @@ sss_assets_edition_v1
 
 ---
 
-## 🔧 Hangar Upgrades
+## 🔧 Улучшения в ангаре
 
-Permanent upgrades available in the hangar:
+Постоянные улучшения в ангаре:
 
-- Start Shield
-- Base Damage
-- Fire Rate
-- Boost
-- Magnet
-- Scrap Recycling
-- Ship Skill Upgrades
+- стартовый щит;
+- базовый урон;
+- скорострельность;
+- форсаж;
+- магнит;
+- увеличение получаемого Scrap;
+- улучшение навыков кораблей.
 
-These upgrades remain after death and affect future runs.
-
----
-
-## 🏅 Achievements
-
-Achievements reward the player with bonus Scrap.  
-Examples:
-
-- First Launch
-- First Minute
-- Stable Pilot
-- Hunter
-- Boss Breaker
-- Level 10
-- Scrap Collector
-- Survivor
+Эти улучшения сохраняются после смерти и работают в следующих забегах.
 
 ---
 
-## 🎵 Music
+## 🏅 Достижения
 
-The game expects background music at:
+Достижения дают игроку бонусный Scrap один раз.
+
+Примеры достижений:
+
+- первый запуск;
+- первая минута;
+- стабильный пилот;
+- охотник;
+- уничтожитель боссов;
+- достижение 10 уровня;
+- накопление Scrap;
+- выживший.
+
+---
+
+## 🎵 Музыка
+
+Игра ожидает фоновую музыку по пути:
 
 ```txt
 music/background.mp3
 ```
 
-You can change the music path inside the code:
+Путь можно изменить внутри кода:
 
 ```js
 const MUSIC_URL = './music/background.mp3'
 ```
 
-Browser audio starts only after the first user interaction because of browser autoplay restrictions.
+Музыка запускается только после первого действия пользователя, потому что браузеры ограничивают автоматическое воспроизведение аудио.
 
 ---
 
-## 🖼️ Assets
+## 🖼️ Ассеты
 
-All images are loaded from the `assets` folder.  
-If an image is missing, the game will still try to run, but that object may render without its intended sprite.
+Все изображения загружаются из папки `assets`.
 
-Recommended format:
+Если изображение отсутствует, игра всё равно попытается запуститься, но объект может отображаться без нужного спрайта.
 
-- PNG with transparency
-- Optimized WebP/PNG for production
-- Small readable sprites
-- Consistent top-down or arcade style
+Рекомендуемый формат ассетов:
+
+- PNG с прозрачностью;
+- оптимизированные PNG или WebP для продакшена;
+- небольшие читаемые спрайты;
+- единый аркадный или top-down стиль.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Технологии
 
 - HTML5
 - CSS3
@@ -289,93 +293,92 @@ Recommended format:
 - Canvas API
 - LocalStorage
 - Web Audio API
-- No frameworks
-- No build step
+- Без фреймворков
+- Без сборки
 
 ---
 
-## 📌 Current Status
+## 📌 Текущий статус
 
-This project is currently an **MVP / prototype** version.
+Проект находится на стадии **MVP / прототипа**.
 
-Implemented:
+Уже реализовано:
 
-- core game loop;
-- player movement;
-- enemy spawning;
-- shooting;
-- upgrades;
-- ships;
-- modes;
-- achievements;
-- boss system;
-- save system;
-- HUD and menus.
-
----
-
-## 🧩 Roadmap
-
-Planned improvements:
-
-- [ ] Split code into separate files
-- [ ] Add better mobile controls
-- [ ] Add more enemy types
-- [ ] Add more boss attack patterns
-- [ ] Add visual polish for explosions
-- [ ] Add sound effects pack
-- [ ] Add settings for volume
-- [ ] Add language switcher
-- [ ] Add PWA support
-- [ ] Add leaderboard
-- [ ] Add online co-op prototype
-- [ ] Add build system with Vite
-- [ ] Optimize assets for production
+- основной игровой цикл;
+- движение игрока;
+- появление врагов;
+- стрельба;
+- временные улучшения;
+- выбор кораблей;
+- игровые режимы;
+- достижения;
+- система боссов;
+- сохранение прогресса;
+- интерфейс и меню.
 
 ---
 
-## 🌐 Deployment
+## 🧩 План развития
 
-You can deploy the project on:
+- [ ] Разделить код на отдельные файлы
+- [ ] Добавить удобное мобильное управление
+- [ ] Добавить больше типов врагов
+- [ ] Добавить новые атаки боссов
+- [ ] Улучшить визуальные эффекты взрывов
+- [ ] Добавить набор звуковых эффектов
+- [ ] Добавить настройку громкости
+- [ ] Добавить переключение языка
+- [ ] Добавить PWA-режим
+- [ ] Добавить таблицу лидеров
+- [ ] Добавить прототип онлайн-кооператива
+- [ ] Перенести проект на Vite
+- [ ] Оптимизировать ассеты для продакшена
+
+---
+
+## 🌐 Деплой
+
+Проект можно разместить на любом статическом хостинге:
 
 - GitHub Pages
 - Netlify
 - Vercel
-- Any static hosting
+- обычный хостинг
 
-For GitHub Pages:
+### Деплой на GitHub Pages
 
-1. Push the project to GitHub.
-2. Go to repository settings.
-3. Open **Pages**.
-4. Select branch `main`.
-5. Select root folder `/`.
-6. Save and wait for deployment.
+1. Загрузи проект в репозиторий GitHub.
+2. Открой настройки репозитория.
+3. Перейди в раздел **Pages**.
+4. Выбери ветку `main`.
+5. Выбери корневую папку `/`.
+6. Сохрани настройки и дождись публикации.
 
 ---
 
-## 📸 Screenshots
+## 📸 Скриншоты
 
-Add screenshots here after uploading images to the repository:
+После добавления изображений в репозиторий можно оформить блок так:
 
 ```md
-![Main Menu](screenshots/menu.png)
-![Gameplay](screenshots/gameplay.png)
-![Hangar](screenshots/hangar.png)
+![Главное меню](screenshots/menu.png)
+![Игровой процесс](screenshots/gameplay.png)
+![Ангар](screenshots/hangar.png)
 ```
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Автор
 
-Created by **Temirkhan Rustemov**.
+Проект создан **Темирханом Рустемовым**.
 
 ---
 
-## 📄 License
+## 📄 Лицензия
 
-This project is open for learning, prototyping and further development.  
-You can add your preferred license, for example:
+Проект можно использовать для обучения, прототипирования и дальнейшей разработки.
+
+При желании можно добавить лицензию, например:
 
 ```txt
 MIT License
